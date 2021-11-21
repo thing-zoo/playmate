@@ -1,8 +1,10 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:playmate/controller/play_info_controller.dart';
 import 'package:playmate/screens/home/home_screen.dart';
 import 'package:playmate/screens/splash_screen.dart';
+import 'package:get/get.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,9 +33,12 @@ class MyApp extends StatelessWidget {
           return ScreenUtilInit(
             designSize:
                 Platform.isIOS ? const Size(360, 690) : const Size(460, 690),
-            builder: () => MaterialApp(
+            builder: () => GetMaterialApp(
               debugShowCheckedModeBanner: false,
               title: 'PLAYMATE',
+              initialBinding : BindingsBuilder((){
+                Get.put(PlayInfoController());
+              }),
               theme: ThemeData(
                 primarySwatch: Colors.lightGreen,
                 // textTheme: TextTheme(button: TextStyle(fontSize: 45.sp)),

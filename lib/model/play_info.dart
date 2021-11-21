@@ -1,29 +1,5 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility that Flutter provides. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
-import 'package:flutter/material.dart';
-import 'package:flutter_test/flutter_test.dart';
-
-import 'package:playmate/main.dart';
 import 'package:xml/xml.dart';
-
-void main() {
-  final bookshelfXml = ''' ''';
-  
-  test('전체 통계', () {
-    final document = XmlDocument.parse(bookshelfXml);
-    final items = document.findAllElements('item');
-    var playInfo = <PlayInfoModel>[];
-    items.forEach((node) {
-      playInfo.add(PlayInfoModel.fromXml(node));
-    });
-  });
-
-}
+import '../utils/xml_utils.dart';
 
 class PlayInfoModel{
   String? ciCode1;
@@ -97,10 +73,6 @@ class PlayInfoModel{
       name4 : XmlUtils.searchResult(xml, 'name4'),
     );
   }
-}
 
-class XmlUtils{
-  static String searchResult(XmlElement xml, String key){
-    return xml.findAllElements(key).map((e) => e.text).isEmpty? "" : xml.findAllElements(key).map((e)=>e.text).first;
-  }
+  String get standardNameString => '시설이름 : $ciName';
 }
