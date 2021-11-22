@@ -16,9 +16,9 @@ class PlayInfoRepository{
     );
   }
 
-  Future<List<PlayInfoModel>> fetchPlayInfo({String? name1}) async{
+  Future<List<PlayInfoModel>> fetchPlayInfo({String? code1}) async{
     var query = Map<String, String>();
-    if(name1!=null) query.putIfAbsent('name1', () => name1);
+    if(code1!=null) query.putIfAbsent('code1', () => code1);
 
     var res = await _dio.get(
       '/openapi/service/rest/ChildPlyFcltInfoService/getFcltInfo',

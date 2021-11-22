@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
               debugShowCheckedModeBanner: false,
               title: 'PLAYMATE',
               initialBinding : BindingsBuilder((){
-                Get.put(PlayInfoController());
+                Get.put(PlayInfoController('놀이터'));
               }),
               theme: ThemeData(
                 primarySwatch: Colors.lightGreen,

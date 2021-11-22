@@ -36,7 +36,7 @@ class Category extends StatelessWidget {
                 Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (_) => const CategoriScreen(categoryname:'키즈카페'),
+                  builder: (_) => const CategoriScreen(categorycode:'A010'),
                 ));
               },
               child: Column(
@@ -59,6 +59,11 @@ class Category extends StatelessWidget {
             TextButton(
               onPressed: () {
                 //이동하도록
+                Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const CategoriScreen(categorycode:'A003'),
+                ));
               },
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
