@@ -1,9 +1,11 @@
 import 'dart:async';
+import 'dart:ffi';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:playmate/screens/map/build_detail_sheet.dart';
 import 'package:playmate/screens/map/map_category_button.dart';
 
 class MapScreen extends StatefulWidget {
@@ -16,32 +18,31 @@ class MapScreen extends StatefulWidget {
 class _MapScreenState extends State<MapScreen> {
   final TextEditingController _filter = TextEditingController();
   final FocusNode _focusNode = FocusNode();
-  String _searchText = "";
-
-  _SearchScreenState() {
-    _filter.addListener(() {
-      setState(() {
-        //필터가 변화를 감지하여 텍스트 변경
-        _searchText = _filter.text;
-      });
-    });
-  }
-
   final Completer<GoogleMapController> _controller = Completer();
 
-  //초기위치
+  //초기 위치
   static final CameraPosition _kGooglePlex = CameraPosition(
     target: const LatLng(37.42796133580664, -122.085749655962),
     zoom: 14.4746,
   );
 
+  //상세 페이지
+  _showDetailSheet(context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder: buildDetailSheet,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(10),
+          topRight: Radius.circular(10),
+        ),
+      ),
+    );
+  }
+
   @override
   void initState() {
-    //네비바 숨기기
-    SystemChrome.setEnabledSystemUIMode(
-      SystemUiMode.manual,
-      overlays: [SystemUiOverlay.top],
-    );
     //상태바 투명하게
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
@@ -51,11 +52,6 @@ class _MapScreenState extends State<MapScreen> {
 
   @override
   void dispose() {
-    //둘다 보이게
-    SystemChrome.setEnabledSystemUIMode(
-      SystemUiMode.manual,
-      overlays: [SystemUiOverlay.top, SystemUiOverlay.bottom],
-    );
     super.dispose();
   }
 
@@ -65,6 +61,13 @@ class _MapScreenState extends State<MapScreen> {
     double fontSize = 15.sp;
 
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.startDocked,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          //이렇게 호출하면됨,,
+          _showDetailSheet(context);
+        },
+      ),
       body: SafeArea(
         top: false,
         bottom: false,
