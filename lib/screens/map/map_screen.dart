@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:playmate/screens/map/build_detail_sheet.dart';
-import 'package:playmate/screens/map/map_category_button.dart';
+import 'package:playmate/screens/map/components/build_detail_sheet.dart';
+import 'package:playmate/screens/map/components/map_category_button.dart';
 
 class MapScreen extends StatefulWidget {
   const MapScreen({Key? key}) : super(key: key);
