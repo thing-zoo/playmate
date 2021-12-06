@@ -18,7 +18,7 @@ Widget buildDetailSheet(BuildContext context) {
               ),
             ),
             //설명
-            Container(
+            SizedBox(
               height: 100.w,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -98,7 +98,7 @@ Widget buildDetailSheet(BuildContext context) {
                         SizedBox(
                           height: 10.w,
                         ),
-                        Text('미끄럼틀')
+                        const Text('미끄럼틀')
                       ],
                     ),
                     Column(
@@ -110,7 +110,7 @@ Widget buildDetailSheet(BuildContext context) {
                         SizedBox(
                           height: 10.w,
                         ),
-                        Text('그네')
+                        const Text('그네')
                       ],
                     ),
                     Column(
@@ -122,7 +122,7 @@ Widget buildDetailSheet(BuildContext context) {
                         SizedBox(
                           height: 10.w,
                         ),
-                        Text('철봉')
+                        const Text('철봉')
                       ],
                     ),
                     Column(
@@ -134,7 +134,7 @@ Widget buildDetailSheet(BuildContext context) {
                         SizedBox(
                           height: 10.w,
                         ),
-                        Text('모래')
+                        const Text('모래')
                       ],
                     ),
                   ],
