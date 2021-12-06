@@ -18,50 +18,54 @@ Widget buildDetailSheet(BuildContext context) {
               ),
             ),
             //설명
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Text(
-                      '산들 산들 놀이터',
-                      style: TextStyle(
-                        fontSize: 20.sp,
-                        fontWeight: FontWeight.bold,
+            Container(
+              height: 90.w,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      Text(
+                        '산들 산들 놀이터',
+                        style: TextStyle(
+                          fontSize: 20.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    Image.asset(
-                      'assets/map/safe.png',
-                      width: 20.sp,
-                    ),
-                    Image.asset(
-                      'assets/map/good.png',
-                      width: 20.sp,
-                    ),
-                  ],
-                ),
-                Text(
-                  '대구광역시 동구 동북로 71길 33',
-                  style: TextStyle(
-                    fontSize: 15.sp,
-                    fontWeight: FontWeight.bold,
+                      Image.asset(
+                        'assets/map/safe.png',
+                        width: 20.sp,
+                      ),
+                      Image.asset(
+                        'assets/map/good.png',
+                        width: 20.sp,
+                      ),
+                    ],
                   ),
-                ),
-                Text(
-                  '설치 일자 : 2017.07',
-                  style: TextStyle(
-                    fontSize: 13.sp,
-                    fontWeight: FontWeight.w500,
+                  Text(
+                    '대구광역시 동구 동북로 71길 33',
+                    style: TextStyle(
+                      fontSize: 15.sp,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-                Text(
-                  '최근 점검 일자 : 2021.08',
-                  style: TextStyle(
-                    fontSize: 13.sp,
-                    fontWeight: FontWeight.w500,
+                  Text(
+                    '설치 일자 : 2017.07',
+                    style: TextStyle(
+                      fontSize: 13.sp,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
-                ),
-              ],
+                  Text(
+                    '최근 점검 일자 : 2021.08',
+                    style: TextStyle(
+                      fontSize: 13.sp,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
