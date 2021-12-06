@@ -26,11 +26,11 @@ class _MapScreenState extends State<MapScreen> {
     zoom: 14.4746,
   );
 
-  //상세 페이지
+  //상세 페이지 호출함수
   _showDetailSheet(context) {
     showModalBottomSheet(
       context: context,
-      isScrollControlled: true,
+      useRootNavigator: true,
       builder: buildDetailSheet,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(

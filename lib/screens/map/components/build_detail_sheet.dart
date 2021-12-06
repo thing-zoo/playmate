@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 Widget buildDetailSheet(BuildContext context) {
-  return Container(
-    height: 0.4.sh,
-    padding: EdgeInsets.all(20.w),
+  return Padding(
+    padding: const EdgeInsets.all(25.0),
     child: Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
         Row(
           children: [
@@ -19,7 +19,7 @@ Widget buildDetailSheet(BuildContext context) {
             ),
             //설명
             Container(
-              height: 90.w,
+              height: 100.w,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
