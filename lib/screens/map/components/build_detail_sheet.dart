@@ -85,25 +85,57 @@ Widget buildDetailSheet(BuildContext context) {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 10.w),
+                padding: EdgeInsets.only(top: 10.w),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Image.asset(
-                      'assets/map/slide.png',
-                      width: 60.w,
+                    Column(
+                      children: [
+                        Image.asset(
+                          'assets/map/slide.png',
+                          width: 55.w,
+                        ),
+                        SizedBox(
+                          height: 10.w,
+                        ),
+                        Text('미끄럼틀')
+                      ],
                     ),
-                    Image.asset(
-                      'assets/map/swing.png',
-                      width: 60.w,
+                    Column(
+                      children: [
+                        Image.asset(
+                          'assets/map/swing.png',
+                          width: 55.w,
+                        ),
+                        SizedBox(
+                          height: 10.w,
+                        ),
+                        Text('그네')
+                      ],
                     ),
-                    Image.asset(
-                      'assets/map/bar.png',
-                      width: 60.w,
+                    Column(
+                      children: [
+                        Image.asset(
+                          'assets/map/bar.png',
+                          width: 55.w,
+                        ),
+                        SizedBox(
+                          height: 10.w,
+                        ),
+                        Text('철봉')
+                      ],
                     ),
-                    Image.asset(
-                      'assets/map/sand.png',
-                      width: 60.w,
+                    Column(
+                      children: [
+                        Image.asset(
+                          'assets/map/sand.png',
+                          width: 55.w,
+                        ),
+                        SizedBox(
+                          height: 10.w,
+                        ),
+                        Text('모래')
+                      ],
                     ),
                   ],
                 ),
