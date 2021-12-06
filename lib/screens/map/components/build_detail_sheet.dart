@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 Widget buildDetailSheet(BuildContext context) {
   return Padding(
-    padding: const EdgeInsets.all(25.0),
+    padding: EdgeInsets.all(25.w),
     child: Column(
       mainAxisSize: MainAxisSize.min,
       children: [
