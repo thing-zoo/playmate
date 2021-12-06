@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:playmate/screens/map/map_category_button.dart';
 
 class MapScreen extends StatefulWidget {
   const MapScreen({Key? key}) : super(key: key);
@@ -116,191 +117,68 @@ class _MapScreenState extends State<MapScreen> {
                       shrinkWrap: true,
                       scrollDirection: Axis.horizontal,
                       children: [
-                        Padding(
-                          padding: EdgeInsets.only(right: 10.w),
-                          child: ElevatedButton.icon(
-                            onPressed: () {
-                              //이동 동작
-                            },
-                            icon: Image.asset(
-                              'assets/home/playground.png',
-                              width: iconSize,
-                            ),
-                            label: Text(
-                              '놀이터',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: fontSize,
-                              ),
-                            ),
-                            style: ElevatedButton.styleFrom(
-                              primary: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30.0),
-                              ),
-                            ),
-                          ),
+                        MapCategoryButton(
+                          title: '놀이터',
+                          image: 'assets/home/playground.png',
+                          fontSize: fontSize,
+                          iconSize: iconSize,
+                          onPressed: () {},
                         ),
-                        Padding(
-                          padding: EdgeInsets.only(right: 10.w),
-                          child: ElevatedButton.icon(
-                            onPressed: () {},
-                            icon: Image.asset(
-                              'assets/home/park.png',
-                              width: iconSize,
-                            ),
-                            label: Text(
-                              '공원',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: fontSize,
-                              ),
-                            ),
-                            style: ElevatedButton.styleFrom(
-                              primary: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30.0),
-                              ),
-                            ),
-                          ),
+                        MapCategoryButton(
+                          title: '공원',
+                          image: 'assets/home/park.png',
+                          fontSize: fontSize,
+                          iconSize: iconSize,
+                          onPressed: () {},
                         ),
-                        Padding(
-                          padding: EdgeInsets.only(right: 10.w),
-                          child: ElevatedButton.icon(
-                            onPressed: () {},
-                            icon: Image.asset(
-                              'assets/home/restaurant.png',
-                              width: iconSize,
-                            ),
-                            label: Text(
-                              '식당(놀이방)',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: fontSize,
-                              ),
-                            ),
-                            style: ElevatedButton.styleFrom(
-                              primary: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30.0),
-                              ),
-                            ),
-                          ),
+                        MapCategoryButton(
+                          title: '식당(놀이방)',
+                          image: 'assets/home/restaurant.png',
+                          fontSize: fontSize,
+                          iconSize: iconSize,
+                          onPressed: () {},
                         ),
-                        Padding(
-                          padding: EdgeInsets.only(right: 10.w),
-                          child: ElevatedButton.icon(
-                            onPressed: () {},
-                            icon: Image.asset(
-                              'assets/home/kidscafe.png',
-                              width: iconSize,
-                            ),
-                            label: Text(
-                              '키즈카페',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: fontSize,
-                              ),
-                            ),
-                            style: ElevatedButton.styleFrom(
-                              primary: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30.0),
-                              ),
-                            ),
-                          ),
+                        MapCategoryButton(
+                          title: '키즈카페',
+                          image: 'assets/home/kidscafe.png',
+                          fontSize: fontSize,
+                          iconSize: iconSize,
+                          onPressed: () {},
                         ),
-                        Padding(
-                          padding: EdgeInsets.only(right: 10.w),
-                          child: ElevatedButton.icon(
-                            onPressed: () {},
-                            icon: Image.asset(
-                              'assets/home/library.png',
-                              width: iconSize,
-                            ),
-                            label: Text(
-                              '공공도서관',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: fontSize,
-                              ),
-                            ),
-                            style: ElevatedButton.styleFrom(
-                              primary: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30.0),
-                              ),
-                            ),
-                          ),
+                        MapCategoryButton(
+                          title: '공공도서관',
+                          image: 'assets/home/library.png',
+                          fontSize: fontSize,
+                          iconSize: iconSize,
+                          onPressed: () {},
                         ),
-                        Padding(
-                          padding: EdgeInsets.only(right: 10.w),
-                          child: ElevatedButton.icon(
-                            onPressed: () {},
-                            icon: Image.asset(
-                              'assets/home/museum.png',
-                              width: iconSize,
-                            ),
-                            label: Text(
-                              '박물관/미술관',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: fontSize,
-                              ),
-                            ),
-                            style: ElevatedButton.styleFrom(
-                              primary: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30.0),
-                              ),
-                            ),
-                          ),
+                        MapCategoryButton(
+                          title: '박물관/미술관',
+                          image: 'assets/home/museum.png',
+                          fontSize: fontSize,
+                          iconSize: iconSize,
+                          onPressed: () {},
                         ),
-                        Padding(
-                          padding: EdgeInsets.only(right: 10.w),
-                          child: ElevatedButton.icon(
-                            onPressed: () {},
-                            icon: Image.asset(
-                              'assets/home/tree.png',
-                              width: iconSize,
-                            ),
-                            label: Text(
-                              '휴양림',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: fontSize,
-                              ),
-                            ),
-                            style: ElevatedButton.styleFrom(
-                              primary: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30.0),
-                              ),
-                            ),
-                          ),
+                        MapCategoryButton(
+                          title: '휴양림',
+                          image: 'assets/home/tree.png',
+                          fontSize: fontSize,
+                          iconSize: iconSize,
+                          onPressed: () {},
                         ),
-                        Padding(
-                          padding: EdgeInsets.only(right: 10.w),
-                          child: ElevatedButton.icon(
-                            onPressed: () {},
-                            icon: Image.asset(
-                              'assets/home/more.png',
-                              width: iconSize,
-                            ),
-                            label: Text(
-                              '기타시설',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: fontSize,
-                              ),
-                            ),
-                            style: ElevatedButton.styleFrom(
-                              primary: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30.0),
-                              ),
-                            ),
-                          ),
+                        MapCategoryButton(
+                          title: '공원',
+                          image: 'assets/home/park.png',
+                          fontSize: fontSize,
+                          iconSize: iconSize,
+                          onPressed: () {},
+                        ),
+                        MapCategoryButton(
+                          title: '기타시설',
+                          image: 'assets/home/more.png',
+                          fontSize: fontSize,
+                          iconSize: iconSize,
+                          onPressed: () {},
                         ),
                       ],
                     ),
