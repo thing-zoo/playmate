@@ -48,3 +48,4 @@ app.*.map.json
 #hide api-key
 /android/app/local.properties
 /ios/Runner/KeyInfo.plist
+/android/app/google-services.json

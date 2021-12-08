@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import './map_body.dart';
 
 class MapScreen extends StatefulWidget {
   const MapScreen({Key? key}) : super(key: key);
@@ -70,12 +71,14 @@ class _MapScreenState extends State<MapScreen> {
         child: Stack(
           children: [
             Positioned.fill(
-              child: GoogleMap(
-                initialCameraPosition: _kGooglePlex,
-                onMapCreated: (GoogleMapController controller) {
-                  _controller.complete(controller);
-                },
-              ),
+              child: 
+              GoogleMapBody(),
+              // GoogleMap(
+              //   initialCameraPosition: _kGooglePlex,
+              //   onMapCreated: (GoogleMapController controller) {
+              //     _controller.complete(controller);
+              //   },
+              // ),
             ),
             Positioned.fill(
               top: Platform.isIOS ? 35 : 20,
