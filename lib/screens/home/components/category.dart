@@ -37,7 +37,7 @@ class Category extends StatelessWidget {
                  Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (_) => const CategoryScreen(category_name:'A010'),
+                  builder: (_) => const CategoryScreen(category_num:0, category_name:"놀이터"),
                 ));
               },
               child: Column(
@@ -60,6 +60,11 @@ class Category extends StatelessWidget {
             TextButton(
               onPressed: () {
                 //이동하도록
+                Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const CategoryScreen(category_num:1, category_name:"공원"),
+                ));
               },
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -81,6 +86,11 @@ class Category extends StatelessWidget {
             TextButton(
               onPressed: () {
                 //이동하도록
+                Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const CategoryScreen(category_num:2, category_name:"식당(놀이방)"),
+                ));
               },
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -102,6 +112,11 @@ class Category extends StatelessWidget {
             TextButton(
               onPressed: () {
                 //이동하도록
+                Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const CategoryScreen(category_num:3, category_name:"키즈카페"),
+                ));
               },
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -123,6 +138,11 @@ class Category extends StatelessWidget {
             TextButton(
               onPressed: () {
                 //이동하도록
+                Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const CategoryScreen(category_num:4, category_name:"공공도서관"),
+                ));
               },
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -144,6 +164,11 @@ class Category extends StatelessWidget {
             TextButton(
               onPressed: () {
                 //이동하도록
+                Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const CategoryScreen(category_num:5, category_name:"박물관/미술관"),
+                ));
               },
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -165,6 +190,11 @@ class Category extends StatelessWidget {
             TextButton(
               onPressed: () {
                 //이동하도록
+                Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const CategoryScreen(category_num:6, category_name:"휴양림"),
+                ));
               },
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -186,6 +216,11 @@ class Category extends StatelessWidget {
             TextButton(
               onPressed: () {
                 //이동하도록
+                Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const CategoryScreen(category_num:7, category_name:"기타시설"),
+                ));
               },
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,

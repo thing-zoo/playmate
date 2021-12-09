@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:playmate/screens/map/datas/map_data_form.dart';
 
-Widget buildDetailSheet(BuildContext context, Map_data_form data) {
+class CategoryDetailScreen extends StatefulWidget {
+  final Map_data_form data;
+  const CategoryDetailScreen({Key? key, required this.data}) : super(key: key);
+  
+  @override
+  State<CategoryDetailScreen> createState() => _CategoryDetailScreenState();
+}
+
+class _CategoryDetailScreenState extends State<CategoryDetailScreen> {
   List<String> logoPicture = ["playground", "park", "restaurant", "kidscafe", "library", "museum", "tree", "more"];
   Map<String, String> facilityPicture = {
     "미끄럼틀" : "slide",
@@ -15,8 +24,23 @@ Widget buildDetailSheet(BuildContext context, Map_data_form data) {
     "고무바닥재" : "rubber",
   };
 
-  var index;
-  return Padding(
+  List<Marker> _markers = [];
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _markers.add(Marker(
+      markerId: MarkerId("marker"),
+      position: widget.data.position,
+    ));
+  }
+
+   @override
+  Widget build(BuildContext context) {
+    Map_data_form data = widget.data;
+    return Scaffold(
+      body: SafeArea(
+        child: Container(
     padding: EdgeInsets.all(25.w),
     child: Column(
       mainAxisSize: MainAxisSize.min,
@@ -125,10 +149,46 @@ Widget buildDetailSheet(BuildContext context, Map_data_form data) {
                 ),
                 )
               ),
+              const Divider(
+          color: Colors.black45,
+        ),
+        Padding(
+          padding: EdgeInsets.only(top: 10.w),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                '지도로 확인하기',
+                style: TextStyle(
+                  fontSize: 15.sp,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height*0.40, 
+               child:
+              Padding(
+                padding: EdgeInsets.only(bottom: 10.w),
+                child: GoogleMap(
+                  
+                mapType: MapType.normal,
+                markers: Set.from(_markers),
+                initialCameraPosition: CameraPosition(
+                  target: data.position,
+                  zoom: 14.4746,
+                ),
+                onCameraMove: (_) {},
+                myLocationButtonEnabled: false,
+              ),
+              ),
+
+               
+              )
             ],
           ),
         ),
       ],
-    ),
-  );
+    ))]))));
+  }
 }
