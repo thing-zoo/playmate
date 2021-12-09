@@ -1,4 +1,6 @@
 import 'dart:io';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase/firebase.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:playmate/controller/play_info_controller.dart';
@@ -6,7 +8,8 @@ import 'package:playmate/screens/home/home_screen.dart';
 import 'package:playmate/screens/splash_screen.dart';
 import 'package:get/get.dart';
 
-void main() {
+void main() async {
+  //await FirebaseApp.instance;
   runApp(const MyApp());
 }
 

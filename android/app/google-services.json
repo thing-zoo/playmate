@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "160837621855",
+    "project_id": "playmate-b7739",
+    "storage_bucket": "playmate-b7739.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:160837621855:android:69b3f0e4e5f78f5dffa3ea",
+        "android_client_info": {
+          "package_name": "com.example.playmate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "160837621855-78ppocm5uhhn3lqpb8lv4l5m9ifb94bn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLq-e3qK-_z4R2jk_5OTDw8FLgKjoskp4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "160837621855-78ppocm5uhhn3lqpb8lv4l5m9ifb94bn.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "160837621855-qe2ueu7vvd0trh8bka054acs0ucrqupq.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.playmate"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
