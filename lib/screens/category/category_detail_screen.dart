@@ -41,17 +41,14 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen> {
     Map_data_form data = widget.data;
     return Scaffold(
       appBar: AppBar(
-        centerTitle: false,
-        actions: <Widget>[
-          TextButton(
+        title: TextButton(
             onPressed: (){
               Navigator.pop(context);
             }, 
             child: Image.asset(
           'assets/logo.png',
           width: 120.w,
-        ),)
-        ],
+        ),),
         elevation:0.0,
         automaticallyImplyLeading: false,
       ),
@@ -87,14 +84,16 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
+                      data.insurnace ?
                       Image.asset(
                         'assets/map/safe.png',
-                        width: 20.sp,
-                      ),
+                        width: 25.sp,
+                      ) : SizedBox(),
+                      data.good ?
                       Image.asset(
                         'assets/map/good.png',
-                        width: 20.sp,
-                      ),
+                        width: 25.sp,
+                      ) : SizedBox(),
                     ],
                   ),
                   Text(
@@ -149,7 +148,9 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen> {
                     padding: const EdgeInsets.all(10),
                     itemCount: data.facilityInfo.length,
                     itemBuilder: (context, index) {
-                      return Column(
+                      return SizedBox(
+                        width: 100.w,
+                        child :Column(
                         children: [
                           Image.asset(
                             'assets/map/${facilityPicture[data.facilityInfo[index]]}.png',
@@ -160,7 +161,7 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen> {
                           ),
                           Text(data.facilityInfo[index])
                         ],
-                      );
+                      ));
                   },
                 ),
                 )

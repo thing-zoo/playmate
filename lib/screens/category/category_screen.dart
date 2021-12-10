@@ -135,17 +135,15 @@ class _CategoryScreenState extends State<CategoryScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        centerTitle: false,
-        actions: <Widget>[
-          TextButton(
-            onPressed: (){
-              Navigator.pop(context);
-            }, 
-            child: Image.asset(
+        title : TextButton(
+          onPressed: (){
+            Navigator.pop(context);
+          }, 
+          child: Image.asset(
           'assets/logo.png',
           width: 120.w,
-        ),)
-        ],
+        ),),
+        
         elevation:0.0,
         automaticallyImplyLeading: false,
       ),

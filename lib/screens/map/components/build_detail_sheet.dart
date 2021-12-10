@@ -16,6 +16,9 @@ Widget buildDetailSheet(BuildContext context, Map_data_form data) {
   };
 
   var index;
+
+  
+
   return Padding(
     padding: EdgeInsets.all(25.w),
     child: Column(
@@ -41,7 +44,7 @@ Widget buildDetailSheet(BuildContext context, Map_data_form data) {
                   Row(
                     children: [
                       SizedBox(
-                        width: 250.w,
+                        width: 240.w,
                         child: SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
                           child : Text(
@@ -53,14 +56,16 @@ Widget buildDetailSheet(BuildContext context, Map_data_form data) {
                             ),
                         ),
                       ),
+                      data.insurnace ?
                       Image.asset(
                         'assets/map/safe.png',
-                        width: 20.sp,
-                      ),
+                        width: 30.sp,
+                      ) : SizedBox(),
+                      data.good ?
                       Image.asset(
                         'assets/map/good.png',
-                        width: 20.sp,
-                      ),
+                        width: 30.sp,
+                      ) : SizedBox(),
                     ],
                   ),
                   Text(
@@ -116,7 +121,9 @@ Widget buildDetailSheet(BuildContext context, Map_data_form data) {
                     padding: const EdgeInsets.all(10),
                     itemCount: data.facilityInfo.length,
                     itemBuilder: (context, index) {
-                      return Column(
+                      return SizedBox(
+                        width : 95.w,
+                        child : Column(
                         children: [
                           Image.asset(
                             'assets/map/${facilityPicture[data.facilityInfo[index]]}.png',
@@ -127,7 +134,7 @@ Widget buildDetailSheet(BuildContext context, Map_data_form data) {
                           ),
                           Text(data.facilityInfo[index])
                         ],
-                      );
+                      ));
                   },
                 ),
                 )

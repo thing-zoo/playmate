@@ -14,17 +14,14 @@ class _PosterDetailScreenState extends State<PosterDetailScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: false,
-        actions: <Widget>[
-          TextButton(
+        title: TextButton(
             onPressed: (){
               Navigator.pop(context);
             }, 
             child: Image.asset(
           'assets/logo.png',
           width: 120.w,
-        ),)
-        ],
+        ),),
         elevation:0.0,
         automaticallyImplyLeading: false,
       ),
@@ -34,7 +31,7 @@ class _PosterDetailScreenState extends State<PosterDetailScreen> {
     child: Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Row(
+        Column(
           children: [
             //아이콘
             Padding(
@@ -46,7 +43,7 @@ class _PosterDetailScreenState extends State<PosterDetailScreen> {
             ),
             //설명
             SizedBox(
-              height: 150.w,
+              height: 200.w,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -54,9 +51,9 @@ class _PosterDetailScreenState extends State<PosterDetailScreen> {
                   Row(
                     children: [
                       Text(
-                        "[대구청년회의소]\n아동백일장",
+                        "[대구청년회의소] 아동백일장",
                         style: TextStyle(
-                          fontSize: 20.sp,
+                          fontSize: 30.sp,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -64,10 +61,16 @@ class _PosterDetailScreenState extends State<PosterDetailScreen> {
                     ],
                   ),
                   Text(
-                    "2021년 5월 16일(수)"
+                    "일시 : 2021년 5월 16일(수) 오후 2시"
                   ),
                   Text(
-                    "오후 2시"
+                    "장소 : 대구광역시교육청 교육연수원"
+                  ), 
+                  Text(
+                    "참가대상 : 대구시내 초등학교 재학생(4~6학년) 40명"
+                  ), 
+                  Text(
+                    "문의사항 : 대구청년회의소(053-0000-0000)"
                   ), 
                 ],
               ),
@@ -78,15 +81,12 @@ class _PosterDetailScreenState extends State<PosterDetailScreen> {
           color: Colors.black45,
         ),
         Padding(
-          padding: EdgeInsets.only(top: 10.w),
+          padding: EdgeInsets.only(top: 10.w, bottom: 10.w),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 "대구청년회의소에서 제 55회 아동 백일장을 개최합니다."
-              ),
-              Text(
-                "대구광역시관내 초등학교 재학생(4~6학년) 대상으로 진행되며"
               ),
               Text(
                 "대구광역시장 표창 등 총 102개의 시상이 있을 예정입니다."
@@ -98,6 +98,11 @@ class _PosterDetailScreenState extends State<PosterDetailScreen> {
                 color: Colors.black45,
               ),
               TextButton(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(Colors.green.shade50),
+                  shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(18.0)),)
+                ),
                 onPressed: () async {
                   const url = 'https://school.iamservice.net/articles/view/68585115?isReturnBodyJsp=true#';
                   if (await canLaunch(url)) {
@@ -115,7 +120,7 @@ class _PosterDetailScreenState extends State<PosterDetailScreen> {
                   ),
                   Text(
                     '  웹사이트로 이동하기',
-                    style: TextStyle(
+                      style: TextStyle(
                       color: Colors.black,
                       fontSize: 15,
                     ),
