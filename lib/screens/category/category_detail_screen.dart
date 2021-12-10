@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:playmate/screens/map/datas/map_data_form.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart' as map;
 
 class CategoryDetailScreen extends StatefulWidget {
   final Map_data_form data;
@@ -23,14 +23,15 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen> {
     "조합놀이대" : "jungle",
     "고무바닥재" : "rubber",
   };
+  
 
-  List<Marker> _markers = [];
+  List<map.Marker> _markers = [];
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    _markers.add(Marker(
-      markerId: MarkerId("marker"),
+    _markers.add(map.Marker(
+      markerId: map.MarkerId("marker"),
       position: widget.data.position,
     ));
   }
@@ -39,6 +40,21 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen> {
   Widget build(BuildContext context) {
     Map_data_form data = widget.data;
     return Scaffold(
+      appBar: AppBar(
+        centerTitle: false,
+        actions: <Widget>[
+          TextButton(
+            onPressed: (){
+              Navigator.pop(context);
+            }, 
+            child: Image.asset(
+          'assets/logo.png',
+          width: 120.w,
+        ),)
+        ],
+        elevation:0.0,
+        automaticallyImplyLeading: false,
+      ),
       body: SafeArea(
         child: Container(
     padding: EdgeInsets.all(25.w),
@@ -57,7 +73,7 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen> {
             ),
             //설명
             SizedBox(
-              height: 100.w,
+              height: 120.w,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -126,7 +142,7 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen> {
                 padding: EdgeInsets.only(top: 10.w),
                 
                 child: Container(
-                  height: 150.0,
+                  height: 120.0,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     shrinkWrap: true,
@@ -170,11 +186,11 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen> {
                child:
               Padding(
                 padding: EdgeInsets.only(bottom: 10.w),
-                child: GoogleMap(
+                child: map.GoogleMap(
                   
-                mapType: MapType.normal,
+                mapType: map.MapType.normal,
                 markers: Set.from(_markers),
-                initialCameraPosition: CameraPosition(
+                initialCameraPosition: map.CameraPosition(
                   target: data.position,
                   zoom: 14.4746,
                 ),

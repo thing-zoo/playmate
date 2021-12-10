@@ -33,18 +33,24 @@ Widget buildDetailSheet(BuildContext context, Map_data_form data) {
             ),
             //설명
             SizedBox(
-              height: 100.w,
+              height: 120.w,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
                     children: [
-                      Text(
-                        data.name,
-                        style: TextStyle(
-                          fontSize: 20.sp,
-                          fontWeight: FontWeight.bold,
+                      SizedBox(
+                        width: 250.w,
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child : Text(
+                              data.name,
+                              style: TextStyle(
+                                fontSize: 20.sp,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                         ),
                       ),
                       Image.asset(
@@ -89,10 +95,11 @@ Widget buildDetailSheet(BuildContext context, Map_data_form data) {
         Padding(
           padding: EdgeInsets.only(top: 10.w),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
                 '시설 정보',
+                textAlign: TextAlign.left,
                 style: TextStyle(
                   fontSize: 15.sp,
                   fontWeight: FontWeight.bold,

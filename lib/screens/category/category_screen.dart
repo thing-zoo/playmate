@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:playmate/screens/category/category_detail_screen.dart';
 import 'package:playmate/screens/map/datas/map_data_form.dart';
 import 'package:playmate/screens/map/datas/map_datas.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart' as map;
+
 
 class CategoryScreen extends StatefulWidget {
   final String category_name;
@@ -18,29 +21,51 @@ class CategoryScreen extends StatefulWidget {
 
 class _CategoryScreenState extends State<CategoryScreen> {
   List<String> logoPicture = ["playground", "park", "restaurant", "kidscafe", "library", "museum", "tree", "more"];
+  
   List<Map_data_form> _map_datas = Map_datas().map_datas;
+  List<double> _dists = [];
+  final nowPos = map.LatLng(35.8847, 128.6111);
+  int categoryNum = 0;
 
+  double calcDist(map.LatLng calcPos){
+    double meter = Geolocator.distanceBetween(
+      nowPos.latitude,
+      nowPos.longitude,
+      calcPos.latitude,
+      calcPos.longitude,
+    );
+    return (meter/1000);
+  }
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     String categoryName = widget.category_name;
+    categoryNum = widget.category_num;
     _setDatas(widget.category_num);
   }
 
-  _setDatas(categoryNum) {
+  _setDatas(categoryN) {
     List<Map_data_form> map_datas = [];
-    _map_datas.forEach((data){
-      if(data.categoryN == categoryNum) map_datas.add(data);
+    List<Map_data_form> new_data = Map_datas().map_datas;
+    List<double> dists = [];
+    new_data.forEach((data){
+      if(data.categoryN == categoryN) {
+        dists.add(calcDist(data.position));
+        map_datas.add(data);
+      }
     });
     setState(() {
       _map_datas = map_datas;
+      _dists = dists;
+      categoryNum = categoryN;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    int categoryNum = widget.category_num;
+    double iconSize = 25.sp;
+    double fontSize = 15.sp;
     
     var _listView = ListView.separated(
       padding: const EdgeInsets.all(8),
@@ -61,23 +86,37 @@ class _CategoryScreenState extends State<CategoryScreen> {
                     }, 
                     child: Row(
                       children: [
-                        Column(
-                          children: [
-                        Image.asset(
-                        'assets/map/${logoPicture[categoryNum]}.png',
-                        width: 55.w,
+                        SizedBox(
+                          width: 60.w,
+                          child: Column(
+                            children: [
+                              Image.asset(
+                              'assets/map/${logoPicture[categoryNum]}.png',
+                              width: 55.w,
+                              ),
+                              Text('${_dists[index].toStringAsFixed(1)} km'),
+                            ],),
                         ),
-                        Text("10m"),
-                       ],),
-                  SizedBox(
-                    height: 10.w,
-                    
-                  ),
+                      SizedBox(
+                        height: 100.w,
+                        width: 20.w,
+                      ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(_map_datas[index].name),
-                      Text(_map_datas[index].arr),
+                      Text(
+                        _map_datas[index].name,
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize : 17,
+                      ),),
+                      Text(
+                        _map_datas[index].arr,
+                        style: TextStyle(
+                          color:Colors.black,
+                          fontSize: 15
+                      ),),
                       Text(_map_datas[index].firstDate),
                     ],
                   ),
@@ -95,15 +134,228 @@ class _CategoryScreenState extends State<CategoryScreen> {
     );
 
     return Scaffold(
-      
+      appBar: AppBar(
+        centerTitle: false,
+        actions: <Widget>[
+          TextButton(
+            onPressed: (){
+              Navigator.pop(context);
+            }, 
+            child: Image.asset(
+          'assets/logo.png',
+          width: 120.w,
+        ),)
+        ],
+        elevation:0.0,
+        automaticallyImplyLeading: false,
+      ),
       body: SafeArea(
-        child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 10.w),
-          child: Container(
-                  child: _listView
-                )
-          ),
-        ),
+        child: Column(
+          children: [
+            SizedBox(
+              height: 60.w,
+              child: ListView(
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                children: [
+                        Padding(
+                          padding: EdgeInsets.only(),
+                          child: ElevatedButton.icon(
+                            onPressed: () {
+                              //이동 동작
+                              _setDatas(0);
+                            },
+                            icon: Image.asset(
+                              'assets/home/playground.png',
+                              width: iconSize,
+                            ),
+                            label: Text(
+                              '놀이터',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: fontSize,                                
+                              ),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.white,                              
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(),
+                          child: ElevatedButton.icon(
+                            onPressed: () {
+                              _setDatas(1);
+                            },
+                            icon: Image.asset(
+                              'assets/home/park.png',
+                              width: iconSize,
+                            ),
+                            label: Text(
+                              '공원',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: fontSize,
+                              ),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.white,
+                              
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(),
+                          child: ElevatedButton.icon(
+                            onPressed: () {
+                              _setDatas(2);
+                            },
+                            icon: Image.asset(
+                              'assets/home/restaurant.png',
+                              width: iconSize,
+                            ),
+                            label: Text(
+                              '식당(놀이방)',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: fontSize,
+                              ),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.white,
+                              
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(),
+                          child: ElevatedButton.icon(
+                            onPressed: () {
+                              _setDatas(3);
+                            },
+                            icon: Image.asset(
+                              'assets/home/kidscafe.png',
+                              width: iconSize,
+                            ),
+                            label: Text(
+                              '키즈카페',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: fontSize,
+                              ),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.white,                              
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(),
+                          child: ElevatedButton.icon(
+                            onPressed: () {
+                              _setDatas(4);
+                            },
+                            icon: Image.asset(
+                              'assets/home/library.png',
+                              width: iconSize,
+                            ),
+                            label: Text(
+                              '공공도서관',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: fontSize,
+                              ),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.white,
+                              
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(),
+                          child: ElevatedButton.icon(
+                            onPressed: () {
+                              _setDatas(5);
+                            },
+                            icon: Image.asset(
+                              'assets/home/museum.png',
+                              width: iconSize,
+                            ),
+                            label: Text(
+                              '박물관/미술관',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: fontSize,
+                              ),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.white,
+                              
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(),
+                          child: ElevatedButton.icon(
+                            onPressed: () {
+                              _setDatas(6);
+                            },
+                            icon: Image.asset(
+                              'assets/home/tree.png',
+                              width: iconSize,
+                            ),
+                            label: Text(
+                              '휴양림',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: fontSize,
+                              ),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.white,
+                              
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(),
+                          child: ElevatedButton.icon(
+                            onPressed: () {
+                              _setDatas(7);
+                            },
+                            icon: Image.asset(
+                              'assets/home/more.png',
+                              width: iconSize,
+                            ),
+                            label: Text(
+                              '기타시설',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: fontSize,
+                              ),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.white,
+                              
+                            ),
+                          ),
+                        ),
+                        
+                      ],
+            ),),
+            SizedBox(
+              height: MediaQuery.of(context).size.height*0.80, 
+              child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 10.w),
+              child: Container(
+                      child: _listView
+                    )
+              ),
+            )
+          ],
+        )
+      ),
     );
   }
 }

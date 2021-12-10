@@ -1,4 +1,3 @@
-import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:playmate/screens/map/datas/map_data_form.dart';
 
@@ -51,7 +50,7 @@ class Map_datas{
       position: LatLng(35.8816567,128.5964942),
       category:"놀이터",
       categoryN: 0,
-      facilityInfo: ["조합놀이대","미끄럼틀","흔들놀이기구", "조합놀이대", "모래바닥재"],
+      facilityInfo: ["조합놀이대","미끄럼틀","흔들놀이기구", "모래바닥재"],
       good: false,
       insurnace: true,
       firstDate: "2010-08-05",
