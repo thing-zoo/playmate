@@ -20,6 +20,7 @@ class MapScreen extends StatefulWidget {
 }
 
 class _MapScreenState extends State<MapScreen> {
+   Completer<GoogleMapController> _mapController = Completer();
   final TextEditingController _filter = TextEditingController();
   final FocusNode _focusNode = FocusNode();
   String _searchText = "";
@@ -30,7 +31,7 @@ class _MapScreenState extends State<MapScreen> {
   List<Marker> _markers = [];
   List<Uint8List> markerIcon = [];
 
-  _SearchScreenState() {
+  _MapScreenState() {
     _filter.addListener(() {
       setState(() {
         //필터가 변화를 감지하여 텍스트 변경
@@ -39,16 +40,28 @@ class _MapScreenState extends State<MapScreen> {
     });
   }
 
+  changeCamera(String addr) async{
+    final GoogleMapController mapController = await _mapController.future;
+    setState(() {
+      mapController.animateCamera(
+        CameraUpdate.newCameraPosition(CameraPosition(
+        target: const LatLng(35.1744336, 129.1686634),
+        zoom: 14.4746,
+        )
+      ));
+    });
+    getFirebase("부산 해운대구");
+  }
 
   //데이터 가져오기 & 초기작업
-  void getFirebase() async{
+  void getFirebase(String addr) async{
    markerIcon.add(await getBytesFromAsset('assets/map/playground.png', 130));
-   markerIcon.add(await getBytesFromAsset('assets/map/park.png', 130));
+   markerIcon.add(await getBytesFromAsset('assets/map/school.png', 130));
    markerIcon.add(await getBytesFromAsset('assets/map/restaurant.png', 130));
    markerIcon.add(await getBytesFromAsset('assets/map/kidscafe.png', 130));
    markerIcon.add(await getBytesFromAsset('assets/map/library.png', 130));
    markerIcon.add(await getBytesFromAsset('assets/map/museum.png', 130));
-   markerIcon.add(await getBytesFromAsset('assets/map/tree.png', 130));
+   markerIcon.add(await getBytesFromAsset('assets/map/mat.png', 130));
    markerIcon.add(await getBytesFromAsset('assets/map/more.png', 130));
 
     Map<String, int> categoryMap = {"A010" : 0, " A002" : 0, "A003" : 0, "A024" : 0,"A011" : 1,  "A004" : 2, "A013" : 3, "A021" : 4, "A022" : 5, "A008" : 6, "A001" : 7, "A023" : 7, "A090" : 7, "A091" : 7};
@@ -58,7 +71,7 @@ class _MapScreenState extends State<MapScreen> {
     List datas;
     int size;
 
-    firestore.collection("areaToaNme").document("대구 북구").get().then((DocumentSnapshot ds){
+    firestore.collection("areaToaNme").document(addr).get().then((DocumentSnapshot ds){
         print("--------------------------DB--------------");
         datas = ds.data["playground"];
         size = ds.data["playground"].length;
@@ -83,7 +96,7 @@ class _MapScreenState extends State<MapScreen> {
   final Completer<GoogleMapController> _controller = Completer();
 
   //초기위치
-  static final CameraPosition _kGooglePlex = CameraPosition(
+  CameraPosition _kGooglePlex = CameraPosition(
     target: now_pos,
     zoom: 14.4746,
   );
@@ -143,7 +156,7 @@ class _MapScreenState extends State<MapScreen> {
 
   @override
   void initState() {
-    getFirebase();
+    getFirebase("대구 북구");
     //네비바 숨기기
     SystemChrome.setEnabledSystemUIMode(
       SystemUiMode.manual,
@@ -179,6 +192,9 @@ class _MapScreenState extends State<MapScreen> {
           children: [
             Positioned.fill(
               child: GoogleMap(
+                onMapCreated: (GoogleMapController mapController){
+                  _mapController.complete(mapController);
+                },
                 mapType: MapType.normal,
                 markers: Set.of(_markers),
                 initialCameraPosition: _kGooglePlex,
@@ -197,6 +213,10 @@ class _MapScreenState extends State<MapScreen> {
                     child: TextField(
                       focusNode: _focusNode,
                       controller: _filter,
+                      textInputAction: TextInputAction.go,
+                      onSubmitted: (value){
+                        changeCamera(value);
+                      },
                       decoration: const InputDecoration(
                         filled: true,
                         fillColor: Colors.white,
@@ -258,7 +278,7 @@ class _MapScreenState extends State<MapScreen> {
                               setCustomMapPin(1);
                             },
                             icon: Image.asset(
-                              'assets/home/park.png',
+                              'assets/home/mat.png',
                               width: iconSize,
                             ),
                             label: Text(
@@ -383,7 +403,7 @@ class _MapScreenState extends State<MapScreen> {
                               setCustomMapPin(6);
                             },
                             icon: Image.asset(
-                              'assets/home/tree.png',
+                              'assets/home/mat.png',
                               width: iconSize,
                             ),
                             label: Text(

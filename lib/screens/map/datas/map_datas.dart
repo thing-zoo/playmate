@@ -10,7 +10,7 @@ class Map_datas{
       arr:"대구 북구 대현동112-41",
       position: LatLng(35.8847749,128.6088774),
       category:"도시공원",
-      categoryN: 1,
+      categoryN: 0,
       facilityInfo: ["그네", "흔들놀이기구", "조합놀이대", "고무바닥재"],
       good: false,
       insurnace: true,
