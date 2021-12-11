@@ -32,6 +32,18 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen> {
     "조합놀이대": "jungle",
     "고무바닥재": "rubber",
   };
+  List<String> reviewContents = [
+    "주변에 이런 시설이 있는줄 몰랐네요!",
+    "아이랑 함께 가기 좋아요~",
+    "완전 강추합니다~^^",
+    "한 번쯤 가 볼만해요~"
+  ];
+  List<String> reviewStars = [
+    "★★★★☆",
+    "★★★★★",
+    "★★★★★",
+    "★★★☆☆",
+  ];
 
   List<map.Marker> _markers = [];
   @override
@@ -212,9 +224,62 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen> {
                         ],
                       ),
                     ),
+                    const Divider(
+                      color: Colors.black45,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(top: 10.w),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            '리뷰',
+                            style: TextStyle(
+                              fontSize: 15.sp,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: MediaQuery.of(context).size.height * 0.35,
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(vertical: 10.w),
+                              child: ListView.builder(
+                                itemCount: reviewContents.length,
+                                itemBuilder: (content, index){
+                                  return(
+                                    Column(
+                                      children :[
+                                        Row(
+                                          children: [
+                                            Icon(
+                                              Icons.account_circle_outlined,
+                                              size: 50.0,
+                                            ),
+                                            SizedBox(width: 20,),
+                                            Column(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Text(reviewStars[index]),
+                                                Text(reviewContents[index]),
+                                              ],
+                                            )
+                                          ],
+                                        ),
+                                        Divider(),
+                                      ]
+                                    )
+                                  );
+                                }
+                              )
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
                   ],
                 ),
-              ),
+              ),             
             ],
           ),
         ),
