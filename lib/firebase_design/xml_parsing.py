@@ -111,45 +111,45 @@ def getDetailDict(db):
             detailDict[ciName]['addr'] = tempDict['addr']    
         
 
-    #전국어린이 놀이시설 정보 서비스
-    xmlUrl = 'http://openapi.cpf.go.kr/openapi/service/rest/ChildPlyFcltInfoService/getFcltInfo'
+    # #전국어린이 놀이시설 정보 서비스
+    # xmlUrl = 'http://openapi.cpf.go.kr/openapi/service/rest/ChildPlyFcltInfoService/getFcltInfo'
     My_API_Key = unquote('gHibR78%2FzKSyCv%2B4Pri85%2FvdXaVaejCaX5XMVQpAht9v1cRA43CqklDyYyyNsXUiUIhoh0sqbiRTmNKASFakPQ%3D%3D')    # 아래 내가 받은 인증키가 안 되서 수업용 인증키 사용.
 
     keys = detailDict.keys()
-    for ciName in keys:
-        queryParams = '?' + urlencode(     
-            {
-                quote_plus('ServiceKey') : My_API_Key,
-                quote_plus('ciName') : ciName       
-            }
-        )
-        response = requests.get(xmlUrl + queryParams).text.encode('utf-8')
-        xmlobj = bs4.BeautifulSoup(response, 'lxml-xml')
-        rows = xmlobj.findAll('item')
-        for col in rows:
-            if col.find('ciInstall') is not None:
-                ciInstall = col.find('ciInstall').text
-                detailDict[ciName]['ciInstall'] = ciInstall
-            if col.find('ciBest') is not None:
-                ciBest = col.find('ciBest').text
-                detailDict[ciName]['ciBest'] = ciBest
+    # for ciName in keys:
+    #     queryParams = '?' + urlencode(     
+    #         {
+    #             quote_plus('ServiceKey') : My_API_Key,
+    #             quote_plus('ciName') : ciName       
+    #         }
+    #     )
+    #     response = requests.get(xmlUrl + queryParams).text.encode('utf-8')
+    #     xmlobj = bs4.BeautifulSoup(response, 'lxml-xml')
+    #     rows = xmlobj.findAll('item')
+    #     for col in rows:
+    #         if col.find('ciInstall') is not None:
+    #             ciInstall = col.find('ciInstall').text
+    #             detailDict[ciName]['ciInstall'] = ciInstall
+    #         if col.find('ciBest') is not None:
+    #             ciBest = col.find('ciBest').text
+    #             detailDict[ciName]['ciBest'] = ciBest
 
-    #안전 
-    xmlUrl = 'http://openapi.cpf.go.kr/openapi/service/rest/ChildPlyFcltSafeInspctInfoService/getFcltSafeInspctInfo'
-    for ciName in keys:
-        queryParams = '?' + urlencode(     
-            {
-                quote_plus('ServiceKey') : My_API_Key,
-                quote_plus('ciName') : ciName       
-            }
-        )
-        response = requests.get(xmlUrl + queryParams).text.encode('utf-8')
-        xmlobj = bs4.BeautifulSoup(response, 'lxml-xml')
-        rows = xmlobj.findAll('item')
-        for col in rows:
-            if col.find('ctmTestDate') is not None:
-                ctmTestDate = col.find('ctmTestDate').text
-                detailDict[ciName]['ctmTestDate'] = ctmTestDate
+    # #안전 
+    # xmlUrl = 'http://openapi.cpf.go.kr/openapi/service/rest/ChildPlyFcltSafeInspctInfoService/getFcltSafeInspctInfo'
+    # for ciName in keys:
+    #     queryParams = '?' + urlencode(     
+    #         {
+    #             quote_plus('ServiceKey') : My_API_Key,
+    #             quote_plus('ciName') : ciName       
+    #         }
+    #     )
+    #     response = requests.get(xmlUrl + queryParams).text.encode('utf-8')
+    #     xmlobj = bs4.BeautifulSoup(response, 'lxml-xml')
+    #     rows = xmlobj.findAll('item')
+    #     for col in rows:
+    #         if col.find('ctmTestDate') is not None:
+    #             ctmTestDate = col.find('ctmTestDate').text
+    #             detailDict[ciName]['ctmTestDate'] = ctmTestDate
 
     #보험정보
     xmlUrl = 'http://openapi.cpf.go.kr/openapi/service/rest/ChildPlyFcltInsrncSbscrbInfoService/getInsrncSbscrbInfo'
@@ -193,3 +193,67 @@ def getDetailDict(db):
 
     print('success to get dictionary from api')
     return detailDict
+
+def updatedDetail():
+
+    cred = credentials.Certificate('lib/firebase_design/firebaseKeys.json')
+    firebase_admin.initialize_app(cred,
+    {
+        'databaseURL' : 'https://playmate-b7739.firebaseio.com'
+    })
+    db = firestore.client()
+    detailDict = {} #key : ciName 
+    ciNameList = []
+    docs = db.collection('location').stream()
+    for doc in docs:
+        tempDict = doc.to_dict()
+        ciNameList.append(tempDict['ciName'])
+    My_API_Key = unquote('gHibR78%2FzKSyCv%2B4Pri85%2FvdXaVaejCaX5XMVQpAht9v1cRA43CqklDyYyyNsXUiUIhoh0sqbiRTmNKASFakPQ%3D%3D')    # 아래 내가 받은 인증키가 안 되서 수업용 인증키 사용.
+        #보험정보
+    xmlUrl = 'http://openapi.cpf.go.kr/openapi/service/rest/ChildPlyFcltInsrncSbscrbInfoService/getInsrncSbscrbInfo'
+    for ciName in ciNameList:
+        if db.collection('detail').document(ciName).get(field_paths={'addr'}).to_dict().get('addr') is None:
+            continue
+        queryParams = '?' + urlencode(     
+            {
+                quote_plus('ServiceKey') : My_API_Key,
+                quote_plus('ciName') : ciName       
+            }
+        )
+        response = requests.get(xmlUrl + queryParams).text.encode('utf-8')
+        xmlobj = bs4.BeautifulSoup(response, 'lxml-xml')
+        rows = xmlobj.findAll('item')
+        cieSeq = ''
+        for col in rows:
+            if col.find('cieSeq') is not None:
+                cieSeq = col.find('cieSeq').text
+        db.collection('detail').document(ciName).update({'cieSeq': cieSeq})            
+      
+    #기구정보
+    xmlUrl = 'http://openapi.cpf.go.kr/openapi/service/rest/ChildPlyFcltUtensilInfoService/getFcltUtensilInfo'
+    for ciName in ciNameList:
+        if db.collection('detail').document(ciName).get(field_paths={'addr'}).to_dict().get('addr') is None:
+            continue
+        queryParams = '?' + urlencode(     
+            {
+                quote_plus('ServiceKey') : My_API_Key,
+                quote_plus('ciName') : ciName       
+            }
+        )
+        response = requests.get(xmlUrl + queryParams).text.encode('utf-8')
+        xmlobj = bs4.BeautifulSoup(response, 'lxml-xml')
+        rows = xmlobj.findAll('item')
+        implement = []
+        implement_code = []
+        for col in rows:
+            if col.find('code5') is not None:
+                implement_code.append(col.find('code5').text)
+            if col.find('name5') is not None:
+                implement.append(col.find('name5').text)
+
+        db.collection('detail').document(ciName).update({'implement': implement})   
+        db.collection('detail').document(ciName).update({'implement_code': implement_code})   
+
+    print('success to get dictionary from api')
+
+updatedDetail()
