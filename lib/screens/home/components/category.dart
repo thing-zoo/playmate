@@ -49,7 +49,7 @@ class Category extends StatelessWidget {
                     width: iconSize,
                   ),
                   Text(
-                    '놀이터',
+                    '실외놀이터',
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: fontSize,
@@ -71,11 +71,11 @@ class Category extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Image.asset(
-                    'assets/home/park.png',
+                    'assets/home/school.png',
                     width: iconSize,
                   ),
                   Text(
-                    '공원',
+                    '학교',
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: fontSize,
@@ -201,11 +201,11 @@ class Category extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Image.asset(
-                    'assets/home/tree.png',
+                    'assets/home/mat.png',
                     width: iconSize,
                   ),
                   Text(
-                    '휴양림',
+                    '실내놀이터',
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: fontSize,
