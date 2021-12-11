@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:playmate/screens/home/components/category.dart';
+import 'package:playmate/screens/home/components/community.dart';
 import 'package:playmate/screens/home/components/map_search.dart';
 import 'package:playmate/screens/home/components/poster.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -28,7 +29,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   width: 120.w,
                 ),
               ),
-              const MapSearch(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  const MapSearch(),
+                  const Community(),
+                ],
+              ),
               const Category(),
               const Poster(),
             ],
