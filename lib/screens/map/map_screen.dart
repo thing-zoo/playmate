@@ -11,6 +11,7 @@ import 'package:playmate/screens/map/components/build_detail_sheet.dart';
 import 'package:playmate/screens/map/datas/map_data_form.dart';
 import 'package:playmate/screens/map/datas/map_datas.dart';
 import 'dart:ui' as ui;
+import 'package:playmate/screens/map/components/map_category_button.dart';
 
 class MapScreen extends StatefulWidget {
   const MapScreen({Key? key}) : super(key: key);
@@ -64,7 +65,22 @@ class _MapScreenState extends State<MapScreen> {
    markerIcon.add(await getBytesFromAsset('assets/map/mat.png', 130));
    markerIcon.add(await getBytesFromAsset('assets/map/more.png', 130));
 
-    Map<String, int> categoryMap = {"A010" : 0, " A002" : 0, "A003" : 0, "A024" : 0,"A011" : 1,  "A004" : 2, "A013" : 3, "A021" : 4, "A022" : 5, "A008" : 6, "A001" : 7, "A023" : 7, "A090" : 7, "A091" : 7};
+    Map<String, int> categoryMap = {
+      "A010": 0,
+      "A002": 0,
+      "A003": 0,
+      "A024": 0,
+      "A011": 1,
+      "A004": 2,
+      "A013": 3,
+      "A021": 4,
+      "A022": 5,
+      "A008": 6,
+      "A001": 7,
+      "A023": 7,
+      "A090": 7,
+      "A091": 7
+    };
     List<Map_data_form> getDatas = [];
     Map_data_form getTemp = Map_data_form();
     double lat, lng;
@@ -85,12 +101,20 @@ class _MapScreenState extends State<MapScreen> {
           lng = datas[i]["lng"];
           getTemp.position = LatLng(lat, lng);
 
-          if(getTemp.categoryN != null && getTemp.name != null && getTemp.position != null ){
-            map_datas.add(getTemp);
-          }
+        lat = datas[i]["lat"];
+        lng = datas[i]["lng"];
+        getTemp.position = LatLng(lat, lng);
+
+        if (getTemp.categoryN != null &&
+            getTemp.name != null &&
+            getTemp.position != null) {
+          map_datas.add(getTemp);
         }
-        setCustomMapPin(9);
+      }
+      setState(() {
+        _markers = setCustomMapPin(9) as List<Marker>;
       });
+    });
   }
 
   final Completer<GoogleMapController> _controller = Completer();
@@ -106,12 +130,14 @@ class _MapScreenState extends State<MapScreen> {
     showModalBottomSheet(
       context: context,
       useRootNavigator: true,
-      builder: (BuildContext bc){
-        return Wrap(children: <Widget>[
-          Container(
-            child: buildDetailSheet(context, data),
-          )
-        ],);
+      builder: (BuildContext bc) {
+        return Wrap(
+          children: <Widget>[
+            Container(
+              child: buildDetailSheet(context, data),
+            )
+          ],
+        );
       },
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
@@ -123,28 +149,24 @@ class _MapScreenState extends State<MapScreen> {
   }
 
   void setCustomMapPin(int category) async {
-  List<Marker> markers = [];
-  for (var data in map_datas) {
-    if(category==9 || category==data.categoryN){
-      //print(data.categoryN);
-      markers.add(Marker(
-          markerId: MarkerId(data.name),
-          draggable: false,
-          onTap: () => {
-            _showDetailSheet(context, data)
-          },
-          icon: BitmapDescriptor.fromBytes(markerIcon[data.categoryN]),
-          position: data.position
-      ));
+    List<Marker> markers = [];
+    for (var data in map_datas) {
+      if (category == 9 || category == data.categoryN) {
+        //print(data.categoryN);
+        markers.add(Marker(
+            markerId: MarkerId(data.name),
+            draggable: false,
+            onTap: () => {_showDetailSheet(context, data)},
+            icon: BitmapDescriptor.fromBytes(markerIcon[data.categoryN]),
+            position: data.position));
+      }
     }
+    setState(() {
+      _markers = markers;
+    });
   }
 
-  setState(() {
-    _markers = markers;
-  });
-}
-
-	Future<Uint8List> getBytesFromAsset(String path, int width) async {
+  Future<Uint8List> getBytesFromAsset(String path, int width) async {
     ByteData data = await rootBundle.load(path);
     ui.Codec codec = await ui.instantiateImageCodec(data.buffer.asUint8List(),
         targetWidth: width);
@@ -171,11 +193,6 @@ class _MapScreenState extends State<MapScreen> {
 
   @override
   void dispose() {
-    //둘다 보이게
-    SystemChrome.setEnabledSystemUIMode(
-      SystemUiMode.manual,
-      overlays: [SystemUiOverlay.top, SystemUiOverlay.bottom],
-    );
     super.dispose();
   }
 
@@ -249,7 +266,6 @@ class _MapScreenState extends State<MapScreen> {
                           padding: EdgeInsets.only(right: 10.w),
                           child: ElevatedButton.icon(
                             onPressed: () {
-                              //이동 동작
                               setCustomMapPin(0);
                             },
                             icon: Image.asset(
@@ -257,7 +273,7 @@ class _MapScreenState extends State<MapScreen> {
                               width: iconSize,
                             ),
                             label: Text(
-                              '놀이터',
+                              '실외놀이터',
                               style: TextStyle(
                                 color: Colors.black,
                                 fontSize: fontSize,
@@ -278,11 +294,11 @@ class _MapScreenState extends State<MapScreen> {
                               setCustomMapPin(1);
                             },
                             icon: Image.asset(
-                              'assets/home/mat.png',
+                              'assets/home/school.png',
                               width: iconSize,
                             ),
                             label: Text(
-                              '공원',
+                              '학교',
                               style: TextStyle(
                                 color: Colors.black,
                                 fontSize: fontSize,
@@ -371,6 +387,7 @@ class _MapScreenState extends State<MapScreen> {
                             ),
                           ),
                         ),
+                        
                         Padding(
                           padding: EdgeInsets.only(right: 10.w),
                           child: ElevatedButton.icon(
@@ -407,7 +424,7 @@ class _MapScreenState extends State<MapScreen> {
                               width: iconSize,
                             ),
                             label: Text(
-                              '휴양림',
+                              '실내놀이터',
                               style: TextStyle(
                                 color: Colors.black,
                                 fontSize: fontSize,
@@ -453,11 +470,11 @@ class _MapScreenState extends State<MapScreen> {
                               setCustomMapPin(9);
                             },
                             icon: Image.asset(
-                              'assets/home/more.png',
+                              'assets/home/all.png',
                               width: iconSize,
                             ),
                             label: Text(
-                              '모두 보기',
+                              '모두보기',
                               style: TextStyle(
                                 color: Colors.black,
                                 fontSize: fontSize,
@@ -471,6 +488,18 @@ class _MapScreenState extends State<MapScreen> {
                             ),
                           ),
                         ),
+                        
+                        // MapCategoryButton(
+                        //   title: '학교',
+                        //   image: 'assets/home/school.png',
+                        //   fontSize: fontSize,
+                        //   iconSize: iconSize,
+                        //   onPressed: () {
+                        //     setState(() {
+                        //       // _markers = setCustomMapPin(1);
+                        //     });
+                        //   },
+                        // ),
                       ],
                     ),
                   ),
