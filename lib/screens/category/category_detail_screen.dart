@@ -55,7 +55,13 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen> {
           width: 120.w,
         ),
         elevation: 0.0,
-        automaticallyImplyLeading: true,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios),
+          color: Colors.white,
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
       ),
       body: SafeArea(
         child: SingleChildScrollView(

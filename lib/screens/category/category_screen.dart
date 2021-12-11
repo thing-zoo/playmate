@@ -151,7 +151,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
             Navigator.pop(context);
           },
           child: Image.asset(
-            'assets/logo.png',
+            'assets/logo_light.png',
             width: 120.w,
           ),
         ),
