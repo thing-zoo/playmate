@@ -58,19 +58,6 @@ class Map_datas{
     ));
     
     map_datas.add(new Map_data_form(
-      name:"대현 e-편한세상아파트 어린이놀이터",
-      arr:"대구광역시 북구 대현로10길 82\n(대현동, 대현e편한세상아파트)",
-      position: LatLng(35.8810815,128.5948791),
-      category:"놀이터",
-      categoryN: 0,
-      facilityInfo: ["그네", "회전놀이기구", "흔들놀이기구", "조합놀이대", "모래바닥재"],
-      good: false,
-      insurnace: true,
-      firstDate: "2008-07-03",
-      checkDate: "2020-11-26",
-    ));
-    
-    map_datas.add(new Map_data_form(
       name:"대현뜨란채아파트 놀이시설",
       arr:"대구광역시 북구 대현남로 28 (대현동)",
       position: LatLng(35.8801571,128.5974657),

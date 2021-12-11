@@ -88,8 +88,7 @@ class _PosterDetailScreenState extends State<PosterDetailScreen> {
                               borderRadius: BorderRadius.circular(18.0)),
                         )),
                     onPressed: () async {
-                      const url =
-                          'https://school.iamservice.net/articles/view/68585115?isReturnBodyJsp=true#';
+                      const url = 'http://daegujc.co.kr/bbs/board.php?bo_table=news&wr_id=61';
                       if (await canLaunch(url)) {
                         await launch(url);
                       } else {
