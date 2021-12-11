@@ -3,6 +3,8 @@ import 'dart:io';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:playmate/screens/map/components/build_detail_sheet.dart';
@@ -21,8 +23,9 @@ class _MapScreenState extends State<MapScreen> {
   final TextEditingController _filter = TextEditingController();
   final FocusNode _focusNode = FocusNode();
   String _searchText = "";
+  Firestore firestore = Firestore.instance;
 
-  List<Map_data_form> map_datas = new Map_datas().map_datas;
+  List<Map_data_form> map_datas = [];
   static const LatLng now_pos = LatLng(35.8847, 128.6111);
   List<Marker> _markers = [];
   List<Uint8List> markerIcon = [];
@@ -34,6 +37,55 @@ class _MapScreenState extends State<MapScreen> {
         _searchText = _filter.text;
       });
     });
+  }
+
+
+  //데이터 가져오기 & 초기작업
+  void getFirebase() async{
+   markerIcon.add(await getBytesFromAsset('assets/map/playground.png', 130));
+   markerIcon.add(await getBytesFromAsset('assets/map/park.png', 130));
+   markerIcon.add(await getBytesFromAsset('assets/map/restaurant.png', 130));
+   markerIcon.add(await getBytesFromAsset('assets/map/kidscafe.png', 130));
+   markerIcon.add(await getBytesFromAsset('assets/map/library.png', 130));
+   markerIcon.add(await getBytesFromAsset('assets/map/museum.png', 130));
+   markerIcon.add(await getBytesFromAsset('assets/map/tree.png', 130));
+   markerIcon.add(await getBytesFromAsset('assets/map/more.png', 130));
+
+    Map<String, int> categoryMap = {"A010" : 0, " A002" : 0, "A003" : 0, "A024" : 0,"A011" : 1,  "A004" : 2, "A013" : 3, "A021" : 4, "A022" : 5, "A008" : 6, "A001" : 7, "A023" : 7, "A090" : 7, "A091" : 7};
+    List<Map_data_form> getDatas = [];
+    Map_data_form getTemp = Map_data_form();
+    double lat, lng;
+    List datas;
+    int size;
+
+    firestore.collection("areaToaNme").document("대구 북구").get().then((DocumentSnapshot ds){
+        print("--------------------------DB--------------");
+        datas = ds.data["playground"];
+        size = ds.data["playground"].length;
+        
+        for(int i=0; i<size;i++){
+          getTemp.name = datas[i]["ciName"];
+          if(categoryMap.containsKey(datas[i]["category"])) getTemp.categoryN = categoryMap[datas[i]["category"]];
+          
+          lat = datas[i]["lat"];
+          lng = datas[i]["lng"];
+          getTemp.position = LatLng(lat, lng);
+
+          if(getTemp.categoryN != null && getTemp.name != null &&getTemp.position != null ){
+            map_datas.add(getTemp);
+            print("name ${map_datas[map_datas.length-1].name}");
+          }
+        }
+        print(map_datas[12].name);
+        print(map_datas[11].name);
+        
+        print(map_datas.length);
+        //map_datas = getDatas;
+        setCustomMapPin(9);
+        // setState(() {
+          
+        // });
+      });
   }
 
   final Completer<GoogleMapController> _controller = Completer();
@@ -66,18 +118,10 @@ class _MapScreenState extends State<MapScreen> {
   }
 
   void setCustomMapPin(int category) async {
-   markerIcon.add(await getBytesFromAsset('assets/map/playground.png', 130));
-   markerIcon.add(await getBytesFromAsset('assets/map/park.png', 130));
-   markerIcon.add(await getBytesFromAsset('assets/map/restaurant.png', 130));
-   markerIcon.add(await getBytesFromAsset('assets/map/kidscafe.png', 130));
-   markerIcon.add(await getBytesFromAsset('assets/map/library.png', 130));
-   markerIcon.add(await getBytesFromAsset('assets/map/museum.png', 130));
-   markerIcon.add(await getBytesFromAsset('assets/map/tree.png', 130));
-   markerIcon.add(await getBytesFromAsset('assets/map/more.png', 130));
-
   List<Marker> markers = [];
   for (var data in map_datas) {
     if(category==9 || category==data.categoryN){
+      print(data.name);
       markers.add(Marker(
           markerId: MarkerId(data.name),
           draggable: false,
@@ -107,7 +151,7 @@ class _MapScreenState extends State<MapScreen> {
 
   @override
   void initState() {
-    setCustomMapPin(9);
+    getFirebase();
     //네비바 숨기기
     SystemChrome.setEnabledSystemUIMode(
       SystemUiMode.manual,

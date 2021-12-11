@@ -3,15 +3,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-class CategoryScreen extends StatefulWidget {
-  const CategoryScreen({Key? key, required this.category_num}) : super(key: key);
+class CategoryTestScreen extends StatefulWidget {
+  const CategoryTestScreen({Key? key, required this.category_num}) : super(key: key);
   
   final String category_num;
   @override
-  State<CategoryScreen> createState() => _CategoryScreenState();
+  State<CategoryTestScreen> createState() => _CategoryTestScreenState();
 }
 
-class _CategoryScreenState extends State<CategoryScreen> {
+class _CategoryTestScreenState extends State<CategoryTestScreen> {
   Firestore firestore = Firestore.instance;
 
   

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:playmate/screens/category/category_screen.dart';
+import 'package:playmate/screens/category/category_screen_firebase.dart';
 
 class Category extends StatelessWidget {
   const Category({Key? key}) : super(key: key);
@@ -37,7 +38,7 @@ class Category extends StatelessWidget {
                  Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (_) => const CategoryScreen(category_num:0, category_name:"놀이터"),
+                  builder: (_) => const CategoryTestScreen(category_num: 'A010',),
                 ));
               },
               child: Column(
