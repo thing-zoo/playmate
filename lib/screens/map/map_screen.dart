@@ -111,9 +111,9 @@ class _MapScreenState extends State<MapScreen> {
           map_datas.add(getTemp);
         }
       }
-      setState(() {
-        _markers = setCustomMapPin(9) as List<Marker>;
-      });
+      
+      setCustomMapPin(9);
+      
     });
   }
 

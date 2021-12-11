@@ -27,21 +27,29 @@ class Poster extends StatelessWidget {
             TextButton(
               onPressed: () {
                 Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => const PosterDetailScreen(),
-                ));
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => const PosterDetailScreen(),
+                    ));
               },
-              child: Image.asset(
-                'assets/home/poster1.png',
-                width: 120.sp,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.asset(
+                  'assets/home/poster1.png',
+                  height: 200,
+                  fit: BoxFit.fill,
+                ),
               ),
             ),
             TextButton(
               onPressed: () {},
-              child: Image.asset(
-                'assets/home/poster2.png',
-                width: 120.sp,
+              child:  ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.asset(
+                  'assets/home/poster2.png',
+                  height: 200,
+                  fit: BoxFit.fill,
+                ),
               ),
             ),
             // TextButton(

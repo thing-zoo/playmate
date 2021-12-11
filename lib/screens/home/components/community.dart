@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:playmate/screens/map/map_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class MapSearch extends StatelessWidget {
-  const MapSearch({
+class Community extends StatelessWidget {
+  const Community({
     Key? key,
   }) : super(key: key);
 
@@ -11,19 +11,19 @@ class MapSearch extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton.icon(
       onPressed: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (_) => const MapScreen(),
-            ));
+        // Navigator.push(
+        //     context,
+        //     MaterialPageRoute(
+        //       builder: (_) => const CommunityScreen(),
+        //     ));
       },
       icon: Icon(
-        Icons.place,
+        Icons.textsms,
         size: 70.w,
         color: Colors.lightGreen,
       ),
       label: Text(
-        '놀이시설\n찾아보기',
+        '커뮤니티',
         style: TextStyle(
           fontSize: 15.sp,
           color: Colors.black54,
