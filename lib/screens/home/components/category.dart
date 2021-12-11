@@ -37,120 +37,56 @@ class Category extends StatelessWidget {
               image: 'assets/home/playground.png',
               fontSize: fontSize,
               iconSize: iconSize,
-              onPressed: () {
-                //이동하도록
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => const CategoryScreen(
-                          category_num: 0, category_name: "실외놀이터"),
-                    ));
-              },
+              category_num: 0,
             ),
             CategoryButton(
               title: '학교',
               image: 'assets/home/school.png',
               fontSize: fontSize,
               iconSize: iconSize,
-              onPressed: () {
-                //이동하도록
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => const CategoryScreen(
-                          category_num: 1, category_name: "학교"),
-                    ));
-              },
+              category_num: 1,
             ),
             CategoryButton(
               title: '학교',
               image: 'assets/home/restaurant.png',
               fontSize: fontSize,
               iconSize: iconSize,
-              onPressed: () {
-                //이동하도록
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => const CategoryScreen(
-                          category_num: 2, category_name: "식당(놀이방)"),
-                    ));
-              },
+              category_num: 2,
             ),
             CategoryButton(
               title: '키즈카페',
               image: 'assets/home/kidscafe.png',
               fontSize: fontSize,
               iconSize: iconSize,
-              onPressed: () {
-                //이동하도록
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => const CategoryScreen(
-                          category_num: 3, category_name: "키즈카페"),
-                    ));
-              },
+              category_num: 3,
             ),
             CategoryButton(
               title: '공공도서관',
               image: 'assets/home/library.png',
               fontSize: fontSize,
               iconSize: iconSize,
-              onPressed: () {
-                //이동하도록
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => const CategoryScreen(
-                          category_num: 4, category_name: "공공도서관"),
-                    ));
-              },
+              category_num: 4,
             ),
             CategoryButton(
               title: '박물관/미술관',
               image: 'assets/home/museum.png',
               fontSize: fontSize,
               iconSize: iconSize,
-              onPressed: () {
-                //이동하도록
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => const CategoryScreen(
-                          category_num: 5, category_name: "박물관/미술관"),
-                    ));
-              },
+              category_num: 5,
             ),
             CategoryButton(
               title: '실내놀이터',
               image: 'assets/home/mat.png',
               fontSize: fontSize,
               iconSize: iconSize,
-              onPressed: () {
-                //이동하도록
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => const CategoryScreen(
-                          category_num: 6, category_name: "실내놀이터"),
-                    ));
-              },
+              category_num: 6,
             ),
             CategoryButton(
               title: '기타시설',
               image: 'assets/home/more.png',
               fontSize: fontSize,
               iconSize: iconSize,
-              onPressed: () {
-                //이동하도록
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => const CategoryScreen(
-                          category_num: 7, category_name: "기타시설"),
-                    ));
-              },
+              category_num: 7,
             ),
           ],
         ),

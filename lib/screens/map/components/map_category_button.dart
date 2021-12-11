@@ -8,15 +8,18 @@ class MapCategoryButton extends StatelessWidget {
       required this.image,
       required this.fontSize,
       required this.iconSize,
-      this.onPressed})
+      this.onPressed
+      })
       : super(key: key);
   final String title;
   final String image;
   final double iconSize;
   final double fontSize;
   final Function()? onPressed;
+
   @override
   Widget build(BuildContext context) {
+    
     return Padding(
       padding: EdgeInsets.only(right: 10.w),
       child: ElevatedButton.icon(

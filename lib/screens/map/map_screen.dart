@@ -98,7 +98,9 @@ class _MapScreenState extends State<MapScreen> {
           map_datas.add(getTemp);
         }
       }
-      setCustomMapPin(9);
+      setState(() {
+        _markers = setCustomMapPin(9) as List<Marker>;
+      });
     });
   }
 
@@ -146,7 +148,6 @@ class _MapScreenState extends State<MapScreen> {
             position: data.position));
       }
     }
-
     setState(() {
       _markers = markers;
     });
@@ -241,87 +242,244 @@ class _MapScreenState extends State<MapScreen> {
                       shrinkWrap: true,
                       scrollDirection: Axis.horizontal,
                       children: [
-                        MapCategoryButton(
-                          title: '실외놀이터',
-                          image: 'assets/home/playground.png',
-                          fontSize: fontSize,
-                          iconSize: iconSize,
-                          onPressed: () {
-                            setCustomMapPin(0);
-                          },
+                        Padding(
+                          padding: EdgeInsets.only(right: 10.w),
+                          child: ElevatedButton.icon(
+                            onPressed: () {
+                              setCustomMapPin(0);
+                            },
+                            icon: Image.asset(
+                              'assets/home/playground.png',
+                              width: iconSize,
+                            ),
+                            label: Text(
+                              '실외놀이터',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: fontSize,
+                              ),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30.0),
+                              ),
+                            ),
+                          ),
                         ),
-                        MapCategoryButton(
-                          title: '학교',
-                          image: 'assets/home/school.png',
-                          fontSize: fontSize,
-                          iconSize: iconSize,
-                          onPressed: () {
-                            setCustomMapPin(1);
-                          },
+                        Padding(
+                          padding: EdgeInsets.only(right: 10.w),
+                          child: ElevatedButton.icon(
+                            onPressed: () {
+                              setCustomMapPin(1);
+                            },
+                            icon: Image.asset(
+                              'assets/home/school.png',
+                              width: iconSize,
+                            ),
+                            label: Text(
+                              '학교',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: fontSize,
+                              ),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30.0),
+                              ),
+                            ),
+                          ),
                         ),
-                        MapCategoryButton(
-                          title: '식당(놀이방)',
-                          image: 'assets/home/restaurant.png',
-                          fontSize: fontSize,
-                          iconSize: iconSize,
-                          onPressed: () {
-                            setCustomMapPin(2);
-                          },
+                        Padding(
+                          padding: EdgeInsets.only(right: 10.w),
+                          child: ElevatedButton.icon(
+                            onPressed: () {
+                              setCustomMapPin(2);
+                            },
+                            icon: Image.asset(
+                              'assets/home/restaurant.png',
+                              width: iconSize,
+                            ),
+                            label: Text(
+                              '식당(놀이방)',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: fontSize,
+                              ),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30.0),
+                              ),
+                            ),
+                          ),
                         ),
-                        MapCategoryButton(
-                          title: '키즈카페',
-                          image: 'assets/home/kidscafe.png',
-                          fontSize: fontSize,
-                          iconSize: iconSize,
-                          onPressed: () {
-                            setCustomMapPin(3);
-                          },
+                        Padding(
+                          padding: EdgeInsets.only(right: 10.w),
+                          child: ElevatedButton.icon(
+                            onPressed: () {
+                              setCustomMapPin(3);
+                            },
+                            icon: Image.asset(
+                              'assets/home/kidscafe.png',
+                              width: iconSize,
+                            ),
+                            label: Text(
+                              '키즈카페',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: fontSize,
+                              ),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30.0),
+                              ),
+                            ),
+                          ),
                         ),
-                        MapCategoryButton(
-                          title: '공공도서관',
-                          image: 'assets/home/library.png',
-                          fontSize: fontSize,
-                          iconSize: iconSize,
-                          onPressed: () {
-                            setCustomMapPin(4);
-                          },
+                        Padding(
+                          padding: EdgeInsets.only(right: 10.w),
+                          child: ElevatedButton.icon(
+                            onPressed: () {
+                              setCustomMapPin(4);
+                            },
+                            icon: Image.asset(
+                              'assets/home/library.png',
+                              width: iconSize,
+                            ),
+                            label: Text(
+                              '공공도서관',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: fontSize,
+                              ),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30.0),
+                              ),
+                            ),
+                          ),
                         ),
-                        MapCategoryButton(
-                          title: '박물관/미술관',
-                          image: 'assets/home/museum.png',
-                          fontSize: fontSize,
-                          iconSize: iconSize,
-                          onPressed: () {
-                            setCustomMapPin(5);
-                          },
+                        
+                        Padding(
+                          padding: EdgeInsets.only(right: 10.w),
+                          child: ElevatedButton.icon(
+                            onPressed: () {
+                              setCustomMapPin(5);
+                            },
+                            icon: Image.asset(
+                              'assets/home/museum.png',
+                              width: iconSize,
+                            ),
+                            label: Text(
+                              '박물관/미술관',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: fontSize,
+                              ),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30.0),
+                              ),
+                            ),
+                          ),
                         ),
-                        MapCategoryButton(
-                          title: '실내놀이터',
-                          image: 'assets/home/mat.png',
-                          fontSize: fontSize,
-                          iconSize: iconSize,
-                          onPressed: () {
-                            setCustomMapPin(6);
-                          },
+                        Padding(
+                          padding: EdgeInsets.only(right: 10.w),
+                          child: ElevatedButton.icon(
+                            onPressed: () {
+                              setCustomMapPin(6);
+                            },
+                            icon: Image.asset(
+                              'assets/home/mat.png',
+                              width: iconSize,
+                            ),
+                            label: Text(
+                              '실내놀이터',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: fontSize,
+                              ),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30.0),
+                              ),
+                            ),
+                          ),
                         ),
-                        MapCategoryButton(
-                          title: '기타시설',
-                          image: 'assets/home/more.png',
-                          fontSize: fontSize,
-                          iconSize: iconSize,
-                          onPressed: () {
-                            setCustomMapPin(7);
-                          },
+                        Padding(
+                          padding: EdgeInsets.only(right: 10.w),
+                          child: ElevatedButton.icon(
+                            onPressed: () {
+                              setCustomMapPin(7);
+                            },
+                            icon: Image.asset(
+                              'assets/home/more.png',
+                              width: iconSize,
+                            ),
+                            label: Text(
+                              '기타시설',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: fontSize,
+                              ),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30.0),
+                              ),
+                            ),
+                          ),
                         ),
-                        MapCategoryButton(
-                          title: '모두보기',
-                          image: 'assets/home/all.png',
-                          fontSize: fontSize,
-                          iconSize: iconSize,
-                          onPressed: () {
-                            setCustomMapPin(9);
-                          },
+                        Padding(
+                          padding: EdgeInsets.only(right: 10.w),
+                          child: ElevatedButton.icon(
+                            onPressed: () {
+                              setCustomMapPin(9);
+                            },
+                            icon: Image.asset(
+                              'assets/home/all.png',
+                              width: iconSize,
+                            ),
+                            label: Text(
+                              '모두보기',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: fontSize,
+                              ),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30.0),
+                              ),
+                            ),
+                          ),
                         ),
+                        
+                        // MapCategoryButton(
+                        //   title: '학교',
+                        //   image: 'assets/home/school.png',
+                        //   fontSize: fontSize,
+                        //   iconSize: iconSize,
+                        //   onPressed: () {
+                        //     setState(() {
+                        //       // _markers = setCustomMapPin(1);
+                        //     });
+                        //   },
+                        // ),
                       ],
                     ),
                   ),
