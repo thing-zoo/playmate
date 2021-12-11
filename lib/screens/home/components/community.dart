@@ -20,7 +20,7 @@ class Community extends StatelessWidget {
       },
       icon: Icon(
         Icons.textsms,
-        size: 70.w,
+        size: 60.w,
         color: Colors.lightGreen,
       ),
       label: Text(
@@ -31,7 +31,7 @@ class Community extends StatelessWidget {
         ),
       ),
       style: ElevatedButton.styleFrom(
-        padding: EdgeInsets.fromLTRB(10.w, 10.h, 20.w, 10.h),
+        padding: EdgeInsets.fromLTRB(20.w, 15.h, 20.w, 15.h),
         primary: Colors.lightGreen[100],
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),
