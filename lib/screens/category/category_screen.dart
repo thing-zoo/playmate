@@ -20,6 +20,7 @@ class CategoryScreen extends StatefulWidget {
 }
 
 class _CategoryScreenState extends State<CategoryScreen> {
+  Firestore firestore = Firestore.instance;
   List<String> logoPicture = ["playground", "park", "restaurant", "kidscafe", "library", "museum", "tree", "more"];
   
   List<Map_data_form> _map_datas = Map_datas().map_datas;
@@ -36,6 +37,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
     );
     return (meter/1000);
   }
+
   @override
   void initState() {
     // TODO: implement initState
