@@ -146,202 +146,179 @@ class _CategoryScreenState extends State<CategoryScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: TextButton(
+        title: Image.asset(
+          'assets/logo_light.png',
+          width: 120.w,
+        ),
+        elevation: 0.0,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios),
+          color: Colors.white,
           onPressed: () {
             Navigator.pop(context);
           },
-          child: Image.asset(
-            'assets/logo_light.png',
-            width: 120.w,
-          ),
         ),
-        elevation: 0.0,
-        automaticallyImplyLeading: false,
       ),
       body: SafeArea(
           child: Column(
         children: [
           SizedBox(
-            height: 60.w,
+            height: 40.h,
             child: ListView(
               shrinkWrap: true,
               scrollDirection: Axis.horizontal,
               children: [
-                Padding(
-                  padding: EdgeInsets.only(),
-                  child: ElevatedButton.icon(
-                    onPressed: () {
-                      //이동 동작
-                      _setDatas(0);
-                    },
-                    icon: Image.asset(
-                      'assets/home/playground.png',
-                      width: iconSize,
-                    ),
-                    label: Text(
-                      '실외놀이터',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: fontSize,
-                      ),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.white,
+                TextButton.icon(
+                  onPressed: () {
+                    //이동 동작
+                    _setDatas(0);
+                  },
+                  icon: Image.asset(
+                    'assets/home/playground.png',
+                    width: iconSize,
+                  ),
+                  label: Text(
+                    '실외놀이터',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: fontSize,
                     ),
                   ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(),
-                  child: ElevatedButton.icon(
-                    onPressed: () {
-                      _setDatas(1);
-                    },
-                    icon: Image.asset(
-                      'assets/home/school.png',
-                      width: iconSize,
-                    ),
-                    label: Text(
-                      '학교',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: fontSize,
-                      ),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.white,
-                    ),
+                  style: TextButton.styleFrom(
+                    primary: Colors.white,
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(),
-                  child: ElevatedButton.icon(
-                    onPressed: () {
-                      _setDatas(2);
-                    },
-                    icon: Image.asset(
-                      'assets/home/restaurant.png',
-                      width: iconSize,
-                    ),
-                    label: Text(
-                      '식당(놀이방)',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: fontSize,
-                      ),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.white,
+                TextButton.icon(
+                  onPressed: () {
+                    _setDatas(1);
+                  },
+                  icon: Image.asset(
+                    'assets/home/school.png',
+                    width: iconSize,
+                  ),
+                  label: Text(
+                    '학교',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: fontSize,
                     ),
                   ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(),
-                  child: ElevatedButton.icon(
-                    onPressed: () {
-                      _setDatas(3);
-                    },
-                    icon: Image.asset(
-                      'assets/home/kidscafe.png',
-                      width: iconSize,
-                    ),
-                    label: Text(
-                      '키즈카페',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: fontSize,
-                      ),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.white,
-                    ),
+                  style: TextButton.styleFrom(
+                    primary: Colors.white,
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(),
-                  child: ElevatedButton.icon(
-                    onPressed: () {
-                      _setDatas(4);
-                    },
-                    icon: Image.asset(
-                      'assets/home/library.png',
-                      width: iconSize,
-                    ),
-                    label: Text(
-                      '공공도서관',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: fontSize,
-                      ),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.white,
+                TextButton.icon(
+                  onPressed: () {
+                    _setDatas(2);
+                  },
+                  icon: Image.asset(
+                    'assets/home/restaurant.png',
+                    width: iconSize,
+                  ),
+                  label: Text(
+                    '식당(놀이방)',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: fontSize,
                     ),
                   ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(),
-                  child: ElevatedButton.icon(
-                    onPressed: () {
-                      _setDatas(5);
-                    },
-                    icon: Image.asset(
-                      'assets/home/museum.png',
-                      width: iconSize,
-                    ),
-                    label: Text(
-                      '박물관/미술관',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: fontSize,
-                      ),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.white,
-                    ),
+                  style: TextButton.styleFrom(
+                    primary: Colors.white,
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(),
-                  child: ElevatedButton.icon(
-                    onPressed: () {
-                      _setDatas(6);
-                    },
-                    icon: Image.asset(
-                      'assets/home/mat.png',
-                      width: iconSize,
-                    ),
-                    label: Text(
-                      '실내놀이터',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: fontSize,
-                      ),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.white,
+                TextButton.icon(
+                  onPressed: () {
+                    _setDatas(3);
+                  },
+                  icon: Image.asset(
+                    'assets/home/kidscafe.png',
+                    width: iconSize,
+                  ),
+                  label: Text(
+                    '키즈카페',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: fontSize,
                     ),
                   ),
+                  style: TextButton.styleFrom(
+                    primary: Colors.white,
+                  ),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(),
-                  child: ElevatedButton.icon(
-                    onPressed: () {
-                      _setDatas(7);
-                    },
-                    icon: Image.asset(
-                      'assets/home/more.png',
-                      width: iconSize,
+                TextButton.icon(
+                  onPressed: () {
+                    _setDatas(4);
+                  },
+                  icon: Image.asset(
+                    'assets/home/library.png',
+                    width: iconSize,
+                  ),
+                  label: Text(
+                    '공공도서관',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: fontSize,
                     ),
-                    label: Text(
-                      '기타시설',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: fontSize,
-                      ),
+                  ),
+                  style: TextButton.styleFrom(
+                    primary: Colors.white,
+                  ),
+                ),
+                TextButton.icon(
+                  onPressed: () {
+                    _setDatas(5);
+                  },
+                  icon: Image.asset(
+                    'assets/home/museum.png',
+                    width: iconSize,
+                  ),
+                  label: Text(
+                    '박물관/미술관',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: fontSize,
                     ),
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.white,
+                  ),
+                  style: TextButton.styleFrom(
+                    primary: Colors.white,
+                  ),
+                ),
+                TextButton.icon(
+                  onPressed: () {
+                    _setDatas(6);
+                  },
+                  icon: Image.asset(
+                    'assets/home/mat.png',
+                    width: iconSize,
+                  ),
+                  label: Text(
+                    '실내놀이터',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: fontSize,
                     ),
+                  ),
+                  style: TextButton.styleFrom(
+                    primary: Colors.white,
+                  ),
+                ),
+                TextButton.icon(
+                  onPressed: () {
+                    _setDatas(7);
+                  },
+                  icon: Image.asset(
+                    'assets/home/more.png',
+                    width: iconSize,
+                  ),
+                  label: Text(
+                    '기타시설',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: fontSize,
+                    ),
+                  ),
+                  style: TextButton.styleFrom(
+                    primary: Colors.white,
                   ),
                 ),
               ],

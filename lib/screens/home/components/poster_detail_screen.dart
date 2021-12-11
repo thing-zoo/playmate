@@ -14,17 +14,18 @@ class _PosterDetailScreenState extends State<PosterDetailScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: TextButton(
+        title: Image.asset(
+          'assets/logo_light.png',
+          width: 120.w,
+        ),
+        elevation: 0.0,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios),
+          color: Colors.white,
           onPressed: () {
             Navigator.pop(context);
           },
-          child: Image.asset(
-            'assets/logo_light.png',
-            width: 100.w,
-          ),
         ),
-        elevation: 0.0,
-        automaticallyImplyLeading: false,
       ),
       body: SafeArea(
         child: Container(

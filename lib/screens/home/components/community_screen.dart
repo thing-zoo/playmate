@@ -4,7 +4,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 class CommunityScreen extends StatefulWidget {
   const CommunityScreen({Key? key}) : super(key: key);
-  
+
   @override
   State<CommunityScreen> createState() => _CommunityScreenState();
 }
@@ -16,31 +16,31 @@ class _CommunityScreenState extends State<CommunityScreen> {
     "침산동 근교에 놀이시설 있는 식당 아시는분~~ 정보좀 주세요^^ 생일이라 외식좀 하고싶은데ㅜ 맘편히 밥 좀 한 번 먹고싶어서요;;",
     "아이유, 윤하 킬링보이스 들어보세요~~"
   ];
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: TextButton(
-            onPressed: (){
+        appBar: AppBar(
+          title: Image.asset(
+            'assets/logo_light.png',
+            width: 120.w,
+          ),
+          elevation: 0.0,
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back_ios),
+            color: Colors.white,
+            onPressed: () {
               Navigator.pop(context);
-            }, 
-            child: Image.asset(
-          'assets/logo.png',
-          width: 120.w,
-        ),),
-        elevation:0.0,
-        automaticallyImplyLeading: false,
-      ),
-      body: SafeArea(
-        child: Container(
+            },
+          ),
+        ),
+        body: SafeArea(
+            child: Container(
           child: ListView.builder(
-
-            scrollDirection: Axis.vertical,
-            itemCount: contents.length,
-            itemBuilder: (context, index){
-              return(
-                Column(
+              scrollDirection: Axis.vertical,
+              itemCount: contents.length,
+              itemBuilder: (context, index) {
+                return (Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
@@ -53,22 +53,23 @@ class _CommunityScreenState extends State<CommunityScreen> {
                       ),
                     ),
                     SizedBox(
-                      height: 120.w,
+                      height: 80.w,
                       child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 20),
-                        child: Text(contents[index]),
+                        child: Text(
+                          contents[index],
+                          style: TextStyle(
+                            fontSize: 15.sp,
+                          ),
+                        ),
                       ),
                     ),
                     Divider(),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Icon(
-                          Icons.chat_bubble_outline
-                        ),
-                        Icon(
-                          Icons.favorite_border
-                        ),
+                        Icon(Icons.chat_bubble_outline),
+                        Icon(Icons.favorite_border),
                       ],
                     ),
                     Divider(
@@ -76,10 +77,8 @@ class _CommunityScreenState extends State<CommunityScreen> {
                       color: Colors.grey[250],
                     )
                   ],
-                )
-              );
-            }
-          ),
-      )));
+                ));
+              }),
+        )));
   }
 }
