@@ -25,7 +25,7 @@ class _MapScreenState extends State<MapScreen> {
   String _searchText = "";
   Firestore firestore = Firestore.instance;
 
-  List<Map_data_form> map_datas = [];
+  List<Map_data_form> map_datas = Map_datas().map_datas;
   static const LatLng now_pos = LatLng(35.8847, 128.6111);
   List<Marker> _markers = [];
   List<Uint8List> markerIcon = [];
@@ -64,6 +64,7 @@ class _MapScreenState extends State<MapScreen> {
         size = ds.data["playground"].length;
         
         for(int i=0; i<size;i++){
+          getTemp = Map_data_form();
           getTemp.name = datas[i]["ciName"];
           if(categoryMap.containsKey(datas[i]["category"])) getTemp.categoryN = categoryMap[datas[i]["category"]];
           
@@ -71,20 +72,11 @@ class _MapScreenState extends State<MapScreen> {
           lng = datas[i]["lng"];
           getTemp.position = LatLng(lat, lng);
 
-          if(getTemp.categoryN != null && getTemp.name != null &&getTemp.position != null ){
+          if(getTemp.categoryN != null && getTemp.name != null && getTemp.position != null ){
             map_datas.add(getTemp);
-            print("name ${map_datas[map_datas.length-1].name}");
           }
         }
-        print(map_datas[12].name);
-        print(map_datas[11].name);
-        
-        print(map_datas.length);
-        //map_datas = getDatas;
         setCustomMapPin(9);
-        // setState(() {
-          
-        // });
       });
   }
 
@@ -121,7 +113,7 @@ class _MapScreenState extends State<MapScreen> {
   List<Marker> markers = [];
   for (var data in map_datas) {
     if(category==9 || category==data.categoryN){
-      print(data.name);
+      //print(data.categoryN);
       markers.add(Marker(
           markerId: MarkerId(data.name),
           draggable: false,

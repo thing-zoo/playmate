@@ -95,5 +95,29 @@ class Map_datas{
       firstDate: "2006-04-28",
       checkDate: "2020-06-23",
     ));
+    map_datas.add(new Map_data_form(
+      name:"그린빌2단지 어린이놀이터",
+      arr:"대구 북구 침산동105-87",
+      position: LatLng(35.940205, 128.564474),
+      category:"놀이터",
+      categoryN: 0,
+      facilityInfo: ["조합놀이대", "모래바닥재"],
+      good: false,
+      insurnace: true,
+      firstDate: "2008-03-28",
+      checkDate: "2020-06-23",
+    ));
+    map_datas.add(new Map_data_form(
+      name:"노원보성타운 어린이놀이터",
+      arr:"대구 북구 침산동105-87",
+      position: LatLng(35.8896582,128.5737296),
+      category:"놀이터",
+      categoryN: 0,
+      facilityInfo: ["조합놀이대", "모래바닥재"],
+      good: false,
+      insurnace: true,
+      firstDate: "2010-04-28",
+      checkDate: "2020-06-23",
+    ));
   }
 }
