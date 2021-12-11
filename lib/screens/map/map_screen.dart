@@ -199,7 +199,7 @@ class _MapScreenState extends State<MapScreen> {
                 markers: Set.of(_markers),
                 initialCameraPosition: _kGooglePlex,
                 onCameraMove: (_) {},
-                myLocationButtonEnabled: false,
+                myLocationButtonEnabled: true,
               ),
             ),
             Positioned.fill(
