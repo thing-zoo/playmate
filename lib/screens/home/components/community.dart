@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:playmate/screens/home/components/community_screen.dart';
 import 'package:playmate/screens/map/map_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -11,11 +12,11 @@ class Community extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton.icon(
       onPressed: () {
-        // Navigator.push(
-        //     context,
-        //     MaterialPageRoute(
-        //       builder: (_) => const CommunityScreen(),
-        //     ));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => const CommunityScreen(),
+            ));
       },
       icon: Icon(
         Icons.textsms,
