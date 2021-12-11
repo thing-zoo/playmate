@@ -67,7 +67,7 @@ class _MapScreenState extends State<MapScreen> {
           getTemp = Map_data_form();
           getTemp.name = datas[i]["ciName"];
           if(categoryMap.containsKey(datas[i]["category"])) getTemp.categoryN = categoryMap[datas[i]["category"]];
-          
+          if(getTemp.categoryN == 2) print(getTemp.name);
           lat = datas[i]["lat"];
           lng = datas[i]["lng"];
           getTemp.position = LatLng(lat, lng);

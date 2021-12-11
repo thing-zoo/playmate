@@ -107,6 +107,7 @@ class Map_datas{
       firstDate: "2008-03-28",
       checkDate: "2020-06-23",
     ));
+
     map_datas.add(new Map_data_form(
       name:"노원보성타운 어린이놀이터",
       arr:"대구 북구 침산동105-87",
@@ -117,6 +118,56 @@ class Map_datas{
       good: false,
       insurnace: true,
       firstDate: "2010-04-28",
+      checkDate: "2020-06-23",
+    ));
+
+    map_datas.add(new Map_data_form(
+      name:"라라코스트 침산점 실내놀이터",
+      arr:"대구광역시 북구 침산남로 96 (침산동)2층",
+      position: LatLng(35.8889516, 128.586259),
+      category:"식당",
+      categoryN: 2,
+      facilityInfo: ["조합놀이대", "고무바닥재"],
+      good: false,
+      insurnace: true,
+      firstDate: "2014-05-15",
+      checkDate: "2020-05-14",
+    ));
+
+    map_datas.add(new Map_data_form(
+      name:"누리마을복현점놀이시설",
+      arr:"대구광역시 북구 공항로 9 (복현동)",
+      position: LatLng(35.8981871,128.616103),
+      category:"식당",
+      categoryN: 2,
+      facilityInfo: ["조합놀이대", "고무바닥재"],
+      good: false,
+      insurnace: true,
+      firstDate: "2016-04-01",
+      checkDate: "2020-06-23",
+    ));
+    map_datas.add(new Map_data_form(
+      name:"대박집경대점 실내놀이터",
+      arr:"대구광역시 북구 대학로 144 (복현동)",
+      position: LatLng(35.8964108, 128.614173),
+      category:"식당",
+      categoryN: 2,
+      facilityInfo: ["조합놀이대", "고무바닥재"],
+      good: false,
+      insurnace: true,
+      firstDate: "2012-12-17",
+      checkDate: "2020-04-09",
+    ));
+    map_datas.add(new Map_data_form(
+      name:"정다운갈비",
+      arr:"대구광역시 북구 성북로9길 9 (침산동)1,2층",
+      position: LatLng(35.8922118, 128.587775),
+      category:"식당",
+      categoryN: 2,
+      facilityInfo: ["조합놀이대", "고무바닥재"],
+      good: false,
+      insurnace: true,
+      firstDate: "2017-12-08",
       checkDate: "2020-06-23",
     ));
   }
