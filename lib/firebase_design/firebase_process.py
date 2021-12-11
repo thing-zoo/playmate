@@ -3,7 +3,8 @@ from firebase_admin import credentials
 from firebase_admin import db
 from firebase_admin import firestore
 import xml_parsing
-import conversing_address
+
+
 
 def makeDetailTable(db):
     detailDict = xml_parsing.getDetailDict(db)
@@ -22,41 +23,34 @@ def makeAreaToNameTable(db):
     #ciNames= []
     #ciSeqs = []
     areaDict = {}
-    gmaps = conversing_address.getGmaps()
     for doc in docs:
         tempDict = doc.to_dict()
         area = tempDict['area']
         if area not in areaDict:
-            areaDict[area] = []
-        else:     
-            if 'addr' in tempDict:
-                addr = tempDict['addr']
-                curDict = {}
-                curDict['ciName'] = tempDict['ciName']
-                curDict['category'] = tempDict['category']
-                lat, lng =  conversing_address.getGeocode(addr,gmaps)
-                if lat == 0:
-                    continue
-                curDict['lat'] = lat
-                curDict['lng'] = lng  
-                areaDict[area].append(curDict)
-
+            areaDict[area] = {
+                'ciNames' : [],
+                'ciSeqs' : []
+            }
+        else:
+            ciName = tempDict['ciName']
+            ciSeq = tempDict['ciSeq']
+            areaDict[area]['ciNames'].append(ciName)
+            areaDict[area]['ciSeqs'].append(ciSeq)        
+    
     for doc in areaDict.keys(): 
-        ref = db.collection('areaToaNme').document(doc)
-        ref.set({'playground':areaDict[doc]})
+        ref = db.collection('areaToName').document(doc)
+        ref.set(areaDict[doc])
+        print(doc, areaDict[doc])
+
 
 def getFirestoreClient():
-    cred = credentials.Certificate('lib/firebase_design/firebaseKeys.json')
+    cred = credentials.Certificate('lib/firebase_design/myKeys.json')
     firebase_admin.initialize_app(cred,
     {
         'databaseURL' : 'https://playmate-b7739.firebaseio.com'
     })
     return firestore.client()
 
-
-
-#db = getFirestoreClient()
-#makeAreaToNameTable(db)
+db = getFirestoreClient()
+makeDetailTable(db)
 #배열이안들어가네 
-
-
