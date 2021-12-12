@@ -33,6 +33,15 @@ class _CommunityScreenState extends State<CommunityScreen> {
               Navigator.pop(context);
             },
           ),
+          actions: [
+            Padding(
+              padding: EdgeInsets.all(8.w),
+              child: Icon(
+                Icons.add,
+                color: Colors.white,
+              ),
+            )
+          ],
         ),
         body: SafeArea(
             child: Container(
@@ -67,7 +76,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
                     Divider(),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
+                      children: const [
                         Icon(Icons.chat_bubble_outline),
                         Icon(Icons.favorite_border),
                       ],

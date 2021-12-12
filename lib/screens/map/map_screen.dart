@@ -21,7 +21,7 @@ class MapScreen extends StatefulWidget {
 }
 
 class _MapScreenState extends State<MapScreen> {
-   Completer<GoogleMapController> _mapController = Completer();
+  Completer<GoogleMapController> _mapController = Completer();
   final TextEditingController _filter = TextEditingController();
   final FocusNode _focusNode = FocusNode();
   String _searchText = "";
@@ -41,29 +41,27 @@ class _MapScreenState extends State<MapScreen> {
     });
   }
 
-  changeCamera(String addr) async{
+  changeCamera(String addr) async {
     final GoogleMapController mapController = await _mapController.future;
     setState(() {
-      mapController.animateCamera(
-        CameraUpdate.newCameraPosition(CameraPosition(
+      mapController.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(
         target: const LatLng(35.1744336, 129.1686634),
         zoom: 14.4746,
-        )
-      ));
+      )));
     });
     getFirebase("부산 해운대구");
   }
 
   //데이터 가져오기 & 초기작업
-  void getFirebase(String addr) async{
-   markerIcon.add(await getBytesFromAsset('assets/map/playground.png', 130));
-   markerIcon.add(await getBytesFromAsset('assets/map/school.png', 130));
-   markerIcon.add(await getBytesFromAsset('assets/map/restaurant.png', 130));
-   markerIcon.add(await getBytesFromAsset('assets/map/kidscafe.png', 130));
-   markerIcon.add(await getBytesFromAsset('assets/map/library.png', 130));
-   markerIcon.add(await getBytesFromAsset('assets/map/museum.png', 130));
-   markerIcon.add(await getBytesFromAsset('assets/map/mat.png', 130));
-   markerIcon.add(await getBytesFromAsset('assets/map/more.png', 130));
+  void getFirebase(String addr) async {
+    markerIcon.add(await getBytesFromAsset('assets/map/playground.png', 130));
+    markerIcon.add(await getBytesFromAsset('assets/map/school.png', 130));
+    markerIcon.add(await getBytesFromAsset('assets/map/restaurant.png', 130));
+    markerIcon.add(await getBytesFromAsset('assets/map/kidscafe.png', 130));
+    markerIcon.add(await getBytesFromAsset('assets/map/library.png', 130));
+    markerIcon.add(await getBytesFromAsset('assets/map/museum.png', 130));
+    markerIcon.add(await getBytesFromAsset('assets/map/mat.png', 130));
+    markerIcon.add(await getBytesFromAsset('assets/map/more.png', 130));
 
     Map<String, int> categoryMap = {
       "A010": 0,
@@ -87,19 +85,24 @@ class _MapScreenState extends State<MapScreen> {
     List datas;
     int size;
 
-    firestore.collection("areaToaNme").document(addr).get().then((DocumentSnapshot ds){
-        print("--------------------------DB--------------");
-        datas = ds.data["playground"];
-        size = ds.data["playground"].length;
-        
-        for(int i=0; i<size;i++){
-          getTemp = Map_data_form();
-          getTemp.name = datas[i]["ciName"];
-          if(categoryMap.containsKey(datas[i]["category"])) getTemp.categoryN = categoryMap[datas[i]["category"]];
-          if(getTemp.categoryN == 2) print(getTemp.name);
-          lat = datas[i]["lat"];
-          lng = datas[i]["lng"];
-          getTemp.position = LatLng(lat, lng);
+    firestore
+        .collection("areaToaNme")
+        .document(addr)
+        .get()
+        .then((DocumentSnapshot ds) {
+      print("--------------------------DB--------------");
+      datas = ds.data["playground"];
+      size = ds.data["playground"].length;
+
+      for (int i = 0; i < size; i++) {
+        getTemp = Map_data_form();
+        getTemp.name = datas[i]["ciName"];
+        if (categoryMap.containsKey(datas[i]["category"]))
+          getTemp.categoryN = categoryMap[datas[i]["category"]];
+        if (getTemp.categoryN == 2) print(getTemp.name);
+        lat = datas[i]["lat"];
+        lng = datas[i]["lng"];
+        getTemp.position = LatLng(lat, lng);
 
         lat = datas[i]["lat"];
         lng = datas[i]["lng"];
@@ -111,9 +114,8 @@ class _MapScreenState extends State<MapScreen> {
           map_datas.add(getTemp);
         }
       }
-      
+
       setCustomMapPin(9);
-      
     });
   }
 
@@ -193,6 +195,11 @@ class _MapScreenState extends State<MapScreen> {
 
   @override
   void dispose() {
+    //네비바 보이게
+    SystemChrome.setEnabledSystemUIMode(
+      SystemUiMode.manual,
+      overlays: [SystemUiOverlay.top, SystemUiOverlay.bottom],
+    );
     super.dispose();
   }
 
@@ -209,7 +216,7 @@ class _MapScreenState extends State<MapScreen> {
           children: [
             Positioned.fill(
               child: GoogleMap(
-                onMapCreated: (GoogleMapController mapController){
+                onMapCreated: (GoogleMapController mapController) {
                   _mapController.complete(mapController);
                 },
                 mapType: MapType.normal,
@@ -231,7 +238,7 @@ class _MapScreenState extends State<MapScreen> {
                       focusNode: _focusNode,
                       controller: _filter,
                       textInputAction: TextInputAction.go,
-                      onSubmitted: (value){
+                      onSubmitted: (value) {
                         changeCamera(value);
                       },
                       decoration: const InputDecoration(
@@ -387,7 +394,7 @@ class _MapScreenState extends State<MapScreen> {
                             ),
                           ),
                         ),
-                        
+
                         Padding(
                           padding: EdgeInsets.only(right: 10.w),
                           child: ElevatedButton.icon(
@@ -488,7 +495,7 @@ class _MapScreenState extends State<MapScreen> {
                             ),
                           ),
                         ),
-                        
+
                         // MapCategoryButton(
                         //   title: '학교',
                         //   image: 'assets/home/school.png',

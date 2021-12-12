@@ -47,7 +47,7 @@ class Category extends StatelessWidget {
               category_num: 1,
             ),
             CategoryButton(
-              title: '학교',
+              title: '식당(놀이방)',
               image: 'assets/home/restaurant.png',
               fontSize: fontSize,
               iconSize: iconSize,
