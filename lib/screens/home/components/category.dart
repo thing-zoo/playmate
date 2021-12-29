@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:playmate/screens/category/category_screen.dart';
 import 'package:playmate/screens/home/components/category_button.dart';
 
 class Category extends StatelessWidget {
@@ -32,60 +33,60 @@ class Category extends StatelessWidget {
           childAspectRatio: Platform.isIOS ? 1.0 : 1.3,
           children: [
             CategoryButton(
-              title: '놀이터',
+              title: '실외놀이터',
               image: 'assets/home/playground.png',
               fontSize: fontSize,
               iconSize: iconSize,
-              onPressed: () {},
+              category_num: 0,
             ),
             CategoryButton(
-              title: '공원',
-              image: 'assets/home/park.png',
+              title: '학교',
+              image: 'assets/home/school.png',
               fontSize: fontSize,
               iconSize: iconSize,
-              onPressed: () {},
+              category_num: 1,
             ),
             CategoryButton(
               title: '식당(놀이방)',
               image: 'assets/home/restaurant.png',
               fontSize: fontSize,
               iconSize: iconSize,
-              onPressed: () {},
+              category_num: 2,
             ),
             CategoryButton(
               title: '키즈카페',
               image: 'assets/home/kidscafe.png',
               fontSize: fontSize,
               iconSize: iconSize,
-              onPressed: () {},
+              category_num: 3,
             ),
             CategoryButton(
               title: '공공도서관',
               image: 'assets/home/library.png',
               fontSize: fontSize,
               iconSize: iconSize,
-              onPressed: () {},
+              category_num: 4,
             ),
             CategoryButton(
-              title: '박물관',
+              title: '박물관/미술관',
               image: 'assets/home/museum.png',
               fontSize: fontSize,
               iconSize: iconSize,
-              onPressed: () {},
+              category_num: 5,
             ),
             CategoryButton(
-              title: '휴양림',
-              image: 'assets/home/tree.png',
+              title: '실내놀이터',
+              image: 'assets/home/mat.png',
               fontSize: fontSize,
               iconSize: iconSize,
-              onPressed: () {},
+              category_num: 6,
             ),
             CategoryButton(
               title: '기타시설',
               image: 'assets/home/more.png',
               fontSize: fontSize,
               iconSize: iconSize,
-              onPressed: () {},
+              category_num: 7,
             ),
           ],
         ),

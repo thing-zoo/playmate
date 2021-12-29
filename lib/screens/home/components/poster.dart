@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:playmate/screens/home/components/poster_detail_screen.dart';
 
 class Poster extends StatelessWidget {
   const Poster({Key? key}) : super(key: key);
@@ -24,17 +25,31 @@ class Poster extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             TextButton(
-              onPressed: () {},
-              child: Image.asset(
-                'assets/home/poster1.png',
-                width: 120.sp,
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => const PosterDetailScreen(),
+                    ));
+              },
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.asset(
+                  'assets/home/poster1.png',
+                  height: 200,
+                  fit: BoxFit.fill,
+                ),
               ),
             ),
             TextButton(
               onPressed: () {},
-              child: Image.asset(
-                'assets/home/poster2.png',
-                width: 120.sp,
+              child:  ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.asset(
+                  'assets/home/poster2.png',
+                  height: 200,
+                  fit: BoxFit.fill,
+                ),
               ),
             ),
             // TextButton(
