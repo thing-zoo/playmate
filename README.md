@@ -101,15 +101,14 @@
 
 
 ## 시연영상
-----
 https://www.youtube.com/watch?v=ZwMIBwQ8Z3w
 
 ## 팀원구성
 컴퓨터학부
 | 김도훈 | 정명주 | 이승신 | 배찬우 |
 | ------ | ------ |----|-----|
-| <a href=""><img src="" alt="" width="100" height="100"></a> |
-| 팀장, Frontend | Frontend |Backend|Frontend|
+| <a href="https://github.com/pove2019?tab=overview&from=2022-08-01&to=2022-08-31"><img src="https://user-images.githubusercontent.com/62596783/192732012-7b536c5a-e21e-4e21-8a12-0089f8379d36.png" alt="pove2019" width="100" height="100"></a> | <a href="https://github.com/thing-zoo"><img src="https://avatars.githubusercontent.com/u/62596783?v=4" alt="thing-zoo" width="100" height="100"></a> | <a href="https://github.com/Seungsin"><img src="https://avatars.githubusercontent.com/u/62578738?s=120&v=4" alt="seungsin" width="100" height="100"></a> | <a href="https://github.com/pove2019?tab=overview&from=2022-08-01&to=2022-08-31"><img src="https://user-images.githubusercontent.com/62596783/192732012-7b536c5a-e21e-4e21-8a12-0089f8379d36.png" alt="pove2019" width="100" height="100"></a> |
+| 팀장, 기획 | FE, 디자인 | FE | BE |
 
 <img width="1440" alt="스크린샷 2022-09-27 오후 1 24 49" src="https://user-images.githubusercontent.com/62596783/192513057-e702d1f0-c80a-4fd9-abbd-08f51c17a956.png">
 
